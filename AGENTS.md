@@ -14,6 +14,7 @@ forward it to their team. This repo keeps every demo in one place instead of sca
 AGENTS.md            public rules (this file)
 CLAUDE.md            points Claude Code here
 SESSION_CONTEXT.md   local handoff notes, gitignored, never committed
+briefs/              local build briefs (briefs/<company>.md), gitignored, never committed
 site/                every build, viewable locally (static, deployable later if needed)
   index.html         root index: every shipped build, newest first
   <company>/         one folder per company, kebab-case (lorikeet, assemblyai)
