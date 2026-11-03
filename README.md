@@ -2,7 +2,7 @@
 
 Working demos I built for startups I want to work with. Instead of telling a founder I can do the job, I build something for their product first.
 
-Live site: deploys from `site/` as one Cloudflare Pages project (link coming once it's live).
+Each folder's README has the live demo link and what the build proves.
 
 | Build | Built for | Folder |
 |---|---|---|

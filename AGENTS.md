@@ -1,8 +1,9 @@
 # practice-builds
 
-One public repo, one Cloudflare Pages site, every build Abdulsaboor ships during his startup PM
-job search. Each build is proof of work for one company: a founder opens one link, sees the
-journey, and clicks into the folder made for them.
+One public GitHub repo holding every build Abdulsaboor ships during his startup PM job search.
+No hosted site: founders browse the repo, and live demos link out to their own deployments.
+Each build is proof of work for one company: a founder opens the repo, sees the journey, and
+clicks into the folder made for them.
 
 Why it exists: cold emails lead with a working demo, not claims. A founder can click a demo and
 forward it to their team. This repo keeps every demo in one place instead of scattered repos.
@@ -12,8 +13,8 @@ forward it to their team. This repo keeps every demo in one place instead of sca
 ```
 AGENTS.md            public rules (this file)
 CLAUDE.md            points Claude Code here
-SESSION_CONTEXT.md   local handoff notes, gitignored, never committed or deployed
-site/                the deployed folder (Pages output dir). Only this ships.
+SESSION_CONTEXT.md   local handoff notes, gitignored, never committed
+site/                every build, viewable locally (static, deployable later if needed)
   index.html         root index: every shipped build, newest first
   <company>/         one folder per company, kebab-case (lorikeet, assemblyai)
     README.md        who the company is, what was built for them, links
@@ -71,12 +72,13 @@ moment a second build lands for that company.
 - One source of truth per fact: build details live in that build's README; the root index holds
   one line and a link.
 
-## Git and deploy rules
+## Git rules
 
 - In-progress work lives on a branch named `build/<company>-<build>`. Main holds only shipped builds.
 - Commit in small steps with plain messages.
-- Abdulsaboor pushes, merges to main, and deploys. Agents push, merge, deploy, or open PRs only
-  when he says so in the current session.
+- Agents commit, push, and merge a build branch into main once the build is click-tested and
+  shipped. Main stays shippable: a build that isn't finished stays on its branch.
+- Agents deploy or open PRs only when he says so in the current session.
 - Source repos for folded-in builds stay untouched. Copy their static output here.
 
 ## Verification before handoff
