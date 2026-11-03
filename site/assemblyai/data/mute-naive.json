@@ -1,0 +1,343 @@
+{
+ "name": "mute-naive",
+ "recorded": "2026-11-03",
+ "duration_ms": 39252,
+ "meta": {
+  "title": "The agent goes mute",
+  "variant": "naive"
+ },
+ "caller_audio": [
+  [
+   510,
+   3310
+  ],
+  [
+   8265,
+   10105
+  ],
+  [
+   22654,
+   25214
+  ],
+  [
+   30229,
+   32069
+  ]
+ ],
+ "agent_audio": [
+  [
+   10265,
+   20634,
+   0
+  ],
+  [
+   32267,
+   35235,
+   0
+  ],
+  [
+   37823,
+   37848,
+   0
+  ]
+ ],
+ "events": [
+  {
+   "t": 0,
+   "src": "tts",
+   "kind": "begin",
+   "inactivity_timeout": 120
+  },
+  {
+   "t": 264,
+   "src": "stt",
+   "kind": "begin",
+   "config": {
+    "model": "universal-3-6-pro",
+    "mode": "balanced",
+    "api_version": "2025-05-12",
+    "speaker_labels": false,
+    "redact_pii": false,
+    "filter_profanity": false,
+    "domain": null,
+    "voice_focus": null
+   }
+  },
+  {
+   "t": 510,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hi, can you check if my package shipped?",
+   "at": 510,
+   "dur_ms": 2800
+  },
+  {
+   "t": 1236,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 0
+  },
+  {
+   "t": 1236,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 2674,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi, can you check if my package"
+  },
+  {
+   "t": 3260,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hi, can you check if my package shipped?"
+  },
+  {
+   "t": 3374,
+   "src": "stt",
+   "kind": "final",
+   "turn": 0,
+   "text": "Hi, can you check if my package shipped?",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 3375,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 0,
+   "text": "Yes, it shipped yesterday afternoon. It's with the carrier now and should arrive by Friday. You'll get an email when it's out for delivery.",
+   "flushed": false
+  },
+  {
+   "t": 8261,
+   "src": "caller",
+   "kind": "gave_up_waiting",
+   "waited_ms": 5000
+  },
+  {
+   "t": 8265,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hello, are you still there?",
+   "at": 8265,
+   "dur_ms": 1840
+  },
+  {
+   "t": 8879,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 7200
+  },
+  {
+   "t": 8879,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Hello?"
+  },
+  {
+   "t": 9113,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Hello,"
+  },
+  {
+   "t": 9274,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Hello, are"
+  },
+  {
+   "t": 10119,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hello, are you still there?"
+  },
+  {
+   "t": 10151,
+   "src": "stt",
+   "kind": "final",
+   "turn": 1,
+   "text": "Hello, are you still there?",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 10151,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 1,
+   "text": "Yes, sorry, I'm here.",
+   "flushed": false
+  },
+  {
+   "t": 10264,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 0,
+   "since_reply_ms": 113
+  },
+  {
+   "t": 10265,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 22133,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 22654,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Great. Can you text me the tracking link?",
+   "at": 22654,
+   "dur_ms": 2560
+  },
+  {
+   "t": 23260,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 21536
+  },
+  {
+   "t": 23260,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "Great."
+  },
+  {
+   "t": 24974,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "Great, can you text me the tracking"
+  },
+  {
+   "t": 25215,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Great. Can you text me the tracking link?"
+  },
+  {
+   "t": 25354,
+   "src": "stt",
+   "kind": "final",
+   "turn": 2,
+   "text": "Great, can you text me the tracking link?",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 25354,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 2,
+   "text": "Sure.",
+   "flushed": false
+  },
+  {
+   "t": 30225,
+   "src": "caller",
+   "kind": "gave_up_waiting",
+   "waited_ms": 5000
+  },
+  {
+   "t": 30229,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hello, are you still there?",
+   "at": 30229,
+   "dur_ms": 1840
+  },
+  {
+   "t": 30777,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 29152
+  },
+  {
+   "t": 30777,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 3,
+   "text": "Hello?"
+  },
+  {
+   "t": 31277,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 3,
+   "text": "Hello, are you"
+  },
+  {
+   "t": 32069,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hello, are you still there?"
+  },
+  {
+   "t": 32174,
+   "src": "stt",
+   "kind": "final",
+   "turn": 3,
+   "text": "Hello, are you still there?",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 32174,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 3,
+   "text": "Yes, sorry, I'm here.",
+   "flushed": false
+  },
+  {
+   "t": 32267,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 91
+  },
+  {
+   "t": 36735,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 37823,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 0,
+   "audio_ms": 13360
+  },
+  {
+   "t": 37823,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 25
+  },
+  {
+   "t": 37850,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 37926,
+   "src": "tts",
+   "kind": "termination"
+  },
+  {
+   "t": 38135,
+   "src": "stt",
+   "kind": "termination"
+  }
+ ]
+}

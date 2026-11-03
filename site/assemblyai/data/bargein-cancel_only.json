@@ -1,0 +1,228 @@
+{
+ "name": "bargein-cancel_only",
+ "recorded": "2026-11-03",
+ "duration_ms": 22866,
+ "meta": {
+  "title": "Talk-over after barge-in",
+  "variant": "cancel_only"
+ },
+ "caller_audio": [
+  [
+   513,
+   2353
+  ],
+  [
+   5152,
+   7632
+  ]
+ ],
+ "agent_audio": [
+  [
+   3337,
+   16617,
+   0
+  ],
+  [
+   16617,
+   20858,
+   2
+  ]
+ ],
+ "events": [
+  {
+   "t": 0,
+   "src": "tts",
+   "kind": "begin",
+   "inactivity_timeout": 120
+  },
+  {
+   "t": 258,
+   "src": "stt",
+   "kind": "begin",
+   "config": {
+    "model": "universal-3-6-pro",
+    "mode": "balanced",
+    "api_version": "2025-05-12",
+    "speaker_labels": false,
+    "redact_pii": false,
+    "filter_profanity": false,
+    "domain": null,
+    "voice_focus": null
+   }
+  },
+  {
+   "t": 513,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "What are your hours this weekend?",
+   "at": 513,
+   "dur_ms": 1840
+  },
+  {
+   "t": 1278,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 0
+  },
+  {
+   "t": 1278,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "What are your"
+  },
+  {
+   "t": 2319,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "What are your hours this weekend?"
+  },
+  {
+   "t": 2825,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "What are your hours this weekend?"
+  },
+  {
+   "t": 2826,
+   "src": "stt",
+   "kind": "final",
+   "turn": 0,
+   "text": "What are your hours this weekend?",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 2826,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 0,
+   "text": "This weekend we're open Saturday from nine in the morning to six in the evening, and Sunday from eleven to five. Holiday hours can be different, so if you're planning a visit around a holiday, it's worth checking the store page first.",
+   "flushed": true
+  },
+  {
+   "t": 3337,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 0,
+   "since_reply_ms": 511
+  },
+  {
+   "t": 3337,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 214
+  },
+  {
+   "t": 5152,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Sorry, I meant the downtown store.",
+   "at": 5152,
+   "dur_ms": 2480
+  },
+  {
+   "t": 5779,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 4096
+  },
+  {
+   "t": 5779,
+   "src": "agent",
+   "kind": "cancel_sent",
+   "buffered_ms": 5596
+  },
+  {
+   "t": 5779,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sorry,"
+  },
+  {
+   "t": 6304,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sorry, I"
+  },
+  {
+   "t": 6357,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 0,
+   "audio_ms": 13280
+  },
+  {
+   "t": 6357,
+   "src": "tts",
+   "kind": "cancelled",
+   "audio_s": 0.0
+  },
+  {
+   "t": 7613,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Sorry, I meant the downtown store."
+  },
+  {
+   "t": 7706,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sorry, I meant the downtown store."
+  },
+  {
+   "t": 7706,
+   "src": "stt",
+   "kind": "final",
+   "turn": 1,
+   "text": "Sorry, I meant the downtown store.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 7706,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 1,
+   "text": "Got it. The downtown store is open ten to four on both days.",
+   "flushed": true
+  },
+  {
+   "t": 7969,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 2,
+   "since_reply_ms": 263
+  },
+  {
+   "t": 8389,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 2,
+   "audio_ms": 4240
+  },
+  {
+   "t": 14627,
+   "src": "caller",
+   "kind": "gave_up_waiting",
+   "waited_ms": 7000
+  },
+  {
+   "t": 20858,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 21497,
+   "src": "tts",
+   "kind": "termination"
+  },
+  {
+   "t": 21743,
+   "src": "stt",
+   "kind": "termination"
+  }
+ ]
+}

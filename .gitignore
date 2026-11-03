@@ -5,3 +5,10 @@ node_modules/
 .wrangler/
 .dev.vars
 *.local.*
+
+# local secrets and harness scratch
+.env
+**/.env
+site/assemblyai/harness/runs/raw/
+__pycache__/
+.venv/
