@@ -1,4 +1,4 @@
-# abdulsaboor-builds
+# practice-builds
 
 One public repo, one Cloudflare Pages site, every build Abdulsaboor ships during his startup PM
 job search. Each build is proof of work for one company: a founder opens one link, sees the
