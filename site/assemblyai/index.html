@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voice Agent Wall Report</title>
+<meta name="description" content="A small voice agent on AssemblyAI Universal-3.6 Pro Realtime and TTS-1, broken four ways on purpose, with the fix for each.">
+<style>
+:root{
+  --bg:#0d0f14; --panel:#151922; --panel2:#1b2030; --line:#2a3142; --text:#e8ebf2; --muted:#9aa3b5;
+  --caller:#5aa9ff; --agent:#b38cff; --bad:#ff5d6c; --good:#3ecf8e; --warn:#ffb547; --accent:#7c5cff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+a{color:#a99bff}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 80px}
+.back{font-size:14px;color:var(--muted);text-decoration:none;display:inline-block;padding:10px 0;min-height:44px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:8px 0 12px;letter-spacing:-.02em}
+h2{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
+h3{font-size:15px;margin:18px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+p{margin:0 0 12px}
+.lede{color:var(--muted);font-size:18px;max-width:760px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
+.tag{font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.tag b{color:var(--text);font-weight:600}
+.video{background:#000;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;display:grid;place-items:center;color:var(--muted)}
+.video video{width:100%;height:100%;display:block}
+.section{margin-top:44px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}
+.ticket{background:var(--panel2);border-left:3px solid var(--warn);border-radius:8px;padding:10px 14px;font-style:italic;color:#d9dcea;margin:10px 0 14px}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.seg button{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
+.seg button.bad[aria-pressed="true"]{background:#5a1f2a;border-color:var(--bad)}
+.seg button.good[aria-pressed="true"]{background:#14432f;border-color:var(--good)}
+.player{background:#0a0c11;border:1px solid var(--line);border-radius:12px;padding:12px}
+.controls{display:flex;align-items:center;gap:12px}
+.play{width:48px;height:48px;border-radius:50%;border:0;background:var(--text);color:#000;font-size:18px;cursor:pointer;flex:none}
+.time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
+.tl{margin-top:12px;cursor:pointer;user-select:none;padding-left:52px}
+.track{position:relative}
+.lane{position:relative;height:26px;margin:4px 0;background:#121621;border-radius:6px}
+.lane .lbl{position:absolute;left:-52px;top:4px;font-size:12px;color:var(--muted);pointer-events:none}
+.bar{position:absolute;top:3px;bottom:3px;border-radius:4px;opacity:.9}
+.bar.caller{background:var(--caller)} .bar.agent{background:var(--agent)}
+.bar.over{background:var(--bad);opacity:.85;top:0;bottom:0;border-radius:2px}
+.marks{position:relative;height:22px}
+.mk{position:absolute;top:2px;width:2px;height:18px;background:var(--muted)}
+.mk.final{background:var(--good)} .mk.cancel,.mk.stop{background:var(--warn)} .mk.err{background:var(--bad)}
+.head{position:absolute;top:0;bottom:0;width:2px;background:#fff;pointer-events:none;z-index:3}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.caption{min-height:52px;margin-top:10px;padding:10px 12px;background:var(--panel2);border-radius:8px;font-size:15px}
+.caption .who{font-size:12px;color:var(--muted);display:block}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}
+.metric{background:var(--panel2);border-radius:10px;padding:12px}
+.metric .v{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.metric .k{font-size:13px;color:var(--muted)}
+.v.bad{color:var(--bad)} .v.good{color:var(--good)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.grid2>div{min-width:0}
+pre{background:#0a0c11;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto;font-size:13px;line-height:1.5;margin:6px 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.playbook{width:100%;border-collapse:collapse;font-size:14px}
+.playbook td{border-top:1px solid var(--line);padding:8px 6px;vertical-align:top}
+.playbook td:first-child{color:var(--muted);width:30%;white-space:nowrap}
+.log{font:13px/1.5 ui-monospace,Menlo,monospace;background:#0a0c11;border:1px solid var(--line);border-radius:10px;padding:10px;max-height:340px;overflow:auto}
+.log div{padding:2px 0;white-space:pre-wrap;word-break:break-word}
+.log .e{color:var(--bad)} .log .ok{color:var(--good)}
+.src{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+ul.files{padding-left:18px} ul.files li{margin-bottom:10px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media (max-width:900px){.grid2{grid-template-columns:minmax(0,1fr)}.card{padding:16px}.playbook td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="https://github.com/AbdulsaboorS/practice-builds">&larr; All builds</a>
+  <h1>I broke a voice agent on AssemblyAI four ways. Here's the fix for each.</h1>
+  <p class="lede">A small voice agent on Universal-3.6 Pro Realtime and AssemblyAI-TTS-1. I ran it against your real APIs, recorded every event, hit the walls your voice agent customers are about to hit, and fixed each one. Every number on this page comes from those recordings.</p>
+  <div class="tags">
+    <span class="tag"><b>STT</b> Universal-3.6 Pro Realtime</span>
+    <span class="tag"><b>TTS</b> AssemblyAI-TTS-1</span>
+    <span class="tag"><b>Recorded</b> <span id="recDate">on a real run</span></span>
+    <span class="tag"><b>Scripted</b> caller and agent lines (testing the pipeline, not an LLM)</span>
+  </div>
+
+  <div class="video" id="video"><span>Demo video</span></div>
+
+  <section class="section" id="baseline"></section>
+  <section class="section"><h2>The four walls</h2><p class="lede">Each one is a ticket your Triage team will see as TTS-1 adoption grows. Toggle naive vs fixed and press play.</p><div id="walls"></div></section>
+  <section class="section" id="file"></section>
+
+  <footer>
+    <p>Built by Abdulsaboor Shaikh. I am a Product Builder with 2 years of experience, most recently shipping voice agents at Cloudflare, where I got obsessed with building, learning, failing, and growing quickly. Big tech pace is too slow, so now I'm hungry to grind and level up at a startup deploying agents in the real world. When I want something badly I commit fully: I'm disciplined, confident, and energetic :D</p>
+    <p class="note">How it was recorded: a TTS-1 voice plays the caller and streams into Universal-3.6 Pro Realtime at real-time pace in 50 ms chunks. The agent answers through one TTS-1 WebSocket session per call. The agent's speaker is simulated: audio drains at real-time speed, like a phone's audio buffer, so what the caller would hear can be measured. There is no echo path. Code: <a href="https://github.com/AbdulsaboorS/practice-builds/tree/main/site/assemblyai/harness">harness on GitHub</a>.</p>
+  </footer>
+</div>
+
+<script src="walls.js"></script>
+</body>
+</html>

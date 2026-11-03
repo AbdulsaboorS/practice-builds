@@ -1,0 +1,302 @@
+{
+ "name": "baseline",
+ "recorded": "2026-11-03",
+ "duration_ms": 21892,
+ "meta": {
+  "title": "A normal call",
+  "mode": "balanced"
+ },
+ "caller_audio": [
+  [
+   721,
+   3601
+  ],
+  [
+   8353,
+   10753
+  ],
+  [
+   14672,
+   15872
+  ]
+ ],
+ "agent_audio": [
+  [
+   4016,
+   7697
+  ],
+  [
+   10951,
+   13992
+  ],
+  [
+   16180,
+   19221
+  ]
+ ],
+ "events": [
+  {
+   "t": 419,
+   "src": "stt",
+   "kind": "begin",
+   "config": {
+    "model": "universal-3-6-pro",
+    "mode": "balanced",
+    "api_version": "2025-05-12",
+    "speaker_labels": false,
+    "redact_pii": false,
+    "filter_profanity": false,
+    "domain": null,
+    "voice_focus": null
+   }
+  },
+  {
+   "t": 429,
+   "src": "tts",
+   "kind": "begin",
+   "inactivity_timeout": 120
+  },
+  {
+   "t": 721,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hi, I'd like to move my appointment to next week.",
+   "at": 721,
+   "dur_ms": 2880
+  },
+  {
+   "t": 1419,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 0
+  },
+  {
+   "t": 1420,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 1585,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi, I'm"
+  },
+  {
+   "t": 2966,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi, I'd like to move my appointment to"
+  },
+  {
+   "t": 3571,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hi, I'd like to move my appointment to next week."
+  },
+  {
+   "t": 3885,
+   "src": "stt",
+   "kind": "final",
+   "turn": 0,
+   "text": "Hi, I'd like to move my appointment to next week.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 3886,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 0,
+   "text": "Sure, I can help with that. What day works best for you?",
+   "flushed": true
+  },
+  {
+   "t": 4016,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 0,
+   "since_reply_ms": 130
+  },
+  {
+   "t": 4016,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 214
+  },
+  {
+   "t": 4303,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 0,
+   "audio_ms": 3680
+  },
+  {
+   "t": 7697,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 8353,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Thursday afternoon, if you have it.",
+   "at": 8353,
+   "dur_ms": 2400
+  },
+  {
+   "t": 8745,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 7008
+  },
+  {
+   "t": 8745,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Thursday"
+  },
+  {
+   "t": 9269,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Thursday afternoon"
+  },
+  {
+   "t": 10683,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Thursday afternoon, if you have it."
+  },
+  {
+   "t": 10723,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Thursday afternoon, if you have it."
+  },
+  {
+   "t": 10842,
+   "src": "stt",
+   "kind": "final",
+   "turn": 1,
+   "text": "Thursday afternoon, if you have it.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 10842,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 1,
+   "text": "Thursday at two is open. Want me to book it?",
+   "flushed": true
+  },
+  {
+   "t": 10951,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 1,
+   "since_reply_ms": 109
+  },
+  {
+   "t": 10951,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 61
+  },
+  {
+   "t": 11210,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 1,
+   "audio_ms": 3040
+  },
+  {
+   "t": 13991,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 14672,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Yes, please.",
+   "at": 14672,
+   "dur_ms": 1200
+  },
+  {
+   "t": 15046,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 13344
+  },
+  {
+   "t": 15046,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "Yes,"
+  },
+  {
+   "t": 15820,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Yes, please."
+  },
+  {
+   "t": 16070,
+   "src": "stt",
+   "kind": "final",
+   "turn": 2,
+   "text": "Yes, please.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 16071,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 2,
+   "text": "Done. You're booked for Thursday at two.",
+   "flushed": true
+  },
+  {
+   "t": 16180,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 2,
+   "since_reply_ms": 109
+  },
+  {
+   "t": 16180,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 16438,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 2,
+   "audio_ms": 3040
+  },
+  {
+   "t": 19220,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 20462,
+   "src": "tts",
+   "kind": "termination"
+  },
+  {
+   "t": 20842,
+   "src": "stt",
+   "kind": "termination"
+  }
+ ]
+}

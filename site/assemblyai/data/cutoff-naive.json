@@ -1,0 +1,494 @@
+{
+ "name": "cutoff-naive",
+ "recorded": "2026-11-03",
+ "duration_ms": 24294,
+ "meta": {
+  "title": "Cut off mid phone number",
+  "variant": "naive",
+  "mode": "min_latency"
+ },
+ "caller_audio": [
+  [
+   1821,
+   4781
+  ],
+  [
+   9416,
+   11656
+  ],
+  [
+   13221,
+   14981
+  ],
+  [
+   16826,
+   18906
+  ]
+ ],
+ "agent_audio": [
+  [
+   5089,
+   7970
+  ],
+  [
+   12280,
+   13630
+  ],
+  [
+   15810,
+   17711
+  ],
+  [
+   19537,
+   21618
+  ]
+ ],
+ "events": [
+  {
+   "t": 503,
+   "src": "stt",
+   "kind": "begin",
+   "config": {
+    "model": "universal-3-6-pro",
+    "mode": "min_latency",
+    "api_version": "2025-05-12",
+    "speaker_labels": false,
+    "redact_pii": false,
+    "filter_profanity": false,
+    "domain": null,
+    "voice_focus": null
+   }
+  },
+  {
+   "t": 503,
+   "src": "tts",
+   "kind": "begin",
+   "inactivity_timeout": 120
+  },
+  {
+   "t": 1821,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hi, I need someone to call me back about my order.",
+   "at": 1821,
+   "dur_ms": 2960
+  },
+  {
+   "t": 2368,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 384
+  },
+  {
+   "t": 2368,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 2368,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 2614,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 4068,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi, I need someone to call me back."
+  },
+  {
+   "t": 4808,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hi, I need someone to call me back about my order."
+  },
+  {
+   "t": 4969,
+   "src": "stt",
+   "kind": "final",
+   "turn": 0,
+   "text": "Hi, I need someone to call me back about my order.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 4970,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 0,
+   "text": "Happy to. What's the best number to reach you?",
+   "flushed": true
+  },
+  {
+   "t": 5088,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 0,
+   "since_reply_ms": 118
+  },
+  {
+   "t": 5089,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 5567,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 0,
+   "audio_ms": 2880
+  },
+  {
+   "t": 7969,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 9416,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Sure, it's seven one three,",
+   "at": 9416,
+   "dur_ms": 2240
+  },
+  {
+   "t": 9949,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 8064
+  },
+  {
+   "t": 9949,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure,"
+  },
+  {
+   "t": 10169,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure,"
+  },
+  {
+   "t": 10279,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure,"
+  },
+  {
+   "t": 11366,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-"
+  },
+  {
+   "t": 11654,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Sure, it's seven one three,"
+  },
+  {
+   "t": 11768,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-"
+  },
+  {
+   "t": 12047,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-"
+  },
+  {
+   "t": 12172,
+   "src": "stt",
+   "kind": "final",
+   "turn": 1,
+   "text": "Sure, it's 713-",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 12172,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 1,
+   "text": "Thanks. Someone will call you back within the hour.",
+   "flushed": true
+  },
+  {
+   "t": 12280,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 1,
+   "since_reply_ms": 108
+  },
+  {
+   "t": 12280,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 61
+  },
+  {
+   "t": 12696,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 1,
+   "audio_ms": 2880
+  },
+  {
+   "t": 13221,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "five five five,",
+   "at": 13221,
+   "dur_ms": 1760
+  },
+  {
+   "t": 13619,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 11808
+  },
+  {
+   "t": 13619,
+   "src": "agent",
+   "kind": "cancel_sent",
+   "buffered_ms": 1530
+  },
+  {
+   "t": 13619,
+   "src": "speaker",
+   "kind": "playback_stopped",
+   "reason": "barge_in",
+   "dropped_ms": 1530
+  },
+  {
+   "t": 13619,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "5."
+  },
+  {
+   "t": 13631,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 13690,
+   "src": "tts",
+   "kind": "cancelled",
+   "audio_s": 0.0
+  },
+  {
+   "t": 13766,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "5."
+  },
+  {
+   "t": 14148,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "5\u2014"
+  },
+  {
+   "t": 14967,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "555."
+  },
+  {
+   "t": 15007,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "five five five,"
+  },
+  {
+   "t": 15203,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "555-5555."
+  },
+  {
+   "t": 15368,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 2,
+   "text": "555-5555."
+  },
+  {
+   "t": 15705,
+   "src": "stt",
+   "kind": "final",
+   "turn": 2,
+   "text": "555.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 15705,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 2,
+   "text": "Sorry, could you say that again?",
+   "flushed": true
+  },
+  {
+   "t": 15810,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 3,
+   "since_reply_ms": 105
+  },
+  {
+   "t": 15810,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 16028,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 3,
+   "audio_ms": 2080
+  },
+  {
+   "t": 16826,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "zero one three four.",
+   "at": 16826,
+   "dur_ms": 2080
+  },
+  {
+   "t": 17668,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 15488
+  },
+  {
+   "t": 17668,
+   "src": "agent",
+   "kind": "cancel_sent",
+   "buffered_ms": 180
+  },
+  {
+   "t": 17668,
+   "src": "speaker",
+   "kind": "playback_stopped",
+   "reason": "barge_in",
+   "dropped_ms": 180
+  },
+  {
+   "t": 17668,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 3,
+   "text": "01."
+  },
+  {
+   "t": 17711,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 17803,
+   "src": "tts",
+   "kind": "cancelled",
+   "audio_s": 0.0
+  },
+  {
+   "t": 18076,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 3,
+   "text": "01-"
+  },
+  {
+   "t": 18912,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "zero one three four."
+  },
+  {
+   "t": 19173,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 3,
+   "text": "0134."
+  },
+  {
+   "t": 19426,
+   "src": "stt",
+   "kind": "final",
+   "turn": 3,
+   "text": "0134.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 19426,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 3,
+   "text": "Sorry, could you say that again?",
+   "flushed": true
+  },
+  {
+   "t": 19537,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 5,
+   "since_reply_ms": 111
+  },
+  {
+   "t": 19537,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 19716,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 5,
+   "audio_ms": 2080
+  },
+  {
+   "t": 21621,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 22850,
+   "src": "tts",
+   "kind": "termination"
+  },
+  {
+   "t": 23182,
+   "src": "stt",
+   "kind": "termination"
+  }
+ ]
+}

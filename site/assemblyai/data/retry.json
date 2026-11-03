@@ -1,0 +1,191 @@
+{
+ "name": "retry",
+ "recorded": "2026-11-03",
+ "duration_ms": 17499,
+ "meta": {
+  "title": "A 1008 that shouldn't be retried"
+ },
+ "caller_audio": [],
+ "agent_audio": [],
+ "events": [
+  {
+   "t": 131,
+   "src": "stt",
+   "kind": "error",
+   "label": "bad key, attempt 1",
+   "code": 1008,
+   "error": "Unauthorized Connection: Invalid API key",
+   "error_type": null,
+   "retryable": null
+  },
+  {
+   "t": 144,
+   "src": "stt",
+   "kind": "closed",
+   "label": "bad key, attempt 1",
+   "code": 1008
+  },
+  {
+   "t": 747,
+   "src": "stt",
+   "kind": "error",
+   "label": "bad key, attempt 2",
+   "code": 1008,
+   "error": "Unauthorized Connection: Invalid API key",
+   "error_type": null,
+   "retryable": null
+  },
+  {
+   "t": 761,
+   "src": "stt",
+   "kind": "closed",
+   "label": "bad key, attempt 2",
+   "code": 1008
+  },
+  {
+   "t": 1858,
+   "src": "stt",
+   "kind": "error",
+   "label": "bad key, attempt 3",
+   "code": 1008,
+   "error": "Unauthorized Connection: Invalid API key",
+   "error_type": null,
+   "retryable": null
+  },
+  {
+   "t": 1881,
+   "src": "stt",
+   "kind": "closed",
+   "label": "bad key, attempt 3",
+   "code": 1008
+  },
+  {
+   "t": 3974,
+   "src": "stt",
+   "kind": "error",
+   "label": "bad key, attempt 4",
+   "code": 1008,
+   "error": "Unauthorized Connection: Invalid API key",
+   "error_type": null,
+   "retryable": null
+  },
+  {
+   "t": 3999,
+   "src": "stt",
+   "kind": "closed",
+   "label": "bad key, attempt 4",
+   "code": 1008
+  },
+  {
+   "t": 8468,
+   "src": "tts",
+   "kind": "error",
+   "label": "bad key",
+   "code": 1008,
+   "error": "Unauthorized: Invalid API key",
+   "error_type": "unauthorized",
+   "retryable": false
+  },
+  {
+   "t": 8533,
+   "src": "tts",
+   "kind": "closed",
+   "label": "bad key",
+   "code": 1008
+  },
+  {
+   "t": 8670,
+   "src": "stt",
+   "kind": "begin",
+   "label": "burst session 1"
+  },
+  {
+   "t": 9830,
+   "src": "stt",
+   "kind": "begin",
+   "label": "burst session 2"
+  },
+  {
+   "t": 11052,
+   "src": "stt",
+   "kind": "begin",
+   "label": "burst session 3"
+  },
+  {
+   "t": 12200,
+   "src": "stt",
+   "kind": "begin",
+   "label": "burst session 4"
+  },
+  {
+   "t": 13585,
+   "src": "stt",
+   "kind": "begin",
+   "label": "burst session 5"
+  },
+  {
+   "t": 14710,
+   "src": "stt",
+   "kind": "error",
+   "label": "burst session 6",
+   "code": 1008,
+   "error": "Unauthorized Connection: Too many concurrent sessions",
+   "error_type": null,
+   "retryable": null
+  },
+  {
+   "t": 14723,
+   "src": "stt",
+   "kind": "closed",
+   "label": "burst session 6",
+   "code": 1008
+  },
+  {
+   "t": 14963,
+   "src": "tts",
+   "kind": "begin",
+   "label": "burst session 1"
+  },
+  {
+   "t": 15367,
+   "src": "tts",
+   "kind": "begin",
+   "label": "burst session 2"
+  },
+  {
+   "t": 15761,
+   "src": "tts",
+   "kind": "begin",
+   "label": "burst session 3"
+  },
+  {
+   "t": 16148,
+   "src": "tts",
+   "kind": "begin",
+   "label": "burst session 4"
+  },
+  {
+   "t": 16536,
+   "src": "tts",
+   "kind": "begin",
+   "label": "burst session 5"
+  },
+  {
+   "t": 16929,
+   "src": "tts",
+   "kind": "error",
+   "label": "burst session 6",
+   "code": 3009,
+   "error": "Too many sessions opened for this account in the last minute (allowance 5 per minute); retry in 24 s.",
+   "error_type": "rate_limited",
+   "retryable": true
+  },
+  {
+   "t": 16997,
+   "src": "tts",
+   "kind": "closed",
+   "label": "burst session 6",
+   "code": 3009
+  }
+ ]
+}

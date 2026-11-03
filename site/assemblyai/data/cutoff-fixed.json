@@ -1,0 +1,325 @@
+{
+ "name": "cutoff-fixed",
+ "recorded": "2026-11-03",
+ "duration_ms": 21972,
+ "meta": {
+  "title": "Cut off mid phone number",
+  "variant": "fixed",
+  "mode": "min_latency"
+ },
+ "caller_audio": [
+  [
+   382,
+   3342
+  ],
+  [
+   7253,
+   9493
+  ],
+  [
+   10392,
+   12152
+  ],
+  [
+   13093,
+   15173
+  ]
+ ],
+ "agent_audio": [
+  [
+   3632,
+   6593
+  ],
+  [
+   16434,
+   19314
+  ]
+ ],
+ "events": [
+  {
+   "t": 0,
+   "src": "tts",
+   "kind": "begin",
+   "inactivity_timeout": 120
+  },
+  {
+   "t": 144,
+   "src": "stt",
+   "kind": "begin",
+   "config": {
+    "model": "universal-3-6-pro",
+    "mode": "min_latency",
+    "api_version": "2025-05-12",
+    "speaker_labels": false,
+    "redact_pii": false,
+    "filter_profanity": false,
+    "domain": null,
+    "voice_focus": null
+   }
+  },
+  {
+   "t": 382,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Hi, I need someone to call me back about my order.",
+   "at": 382,
+   "dur_ms": 2960
+  },
+  {
+   "t": 655,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 0
+  },
+  {
+   "t": 655,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 1070,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi,"
+  },
+  {
+   "t": 2048,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 0,
+   "text": "Hi, I need someone to call"
+  },
+  {
+   "t": 3336,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Hi, I need someone to call me back about my order."
+  },
+  {
+   "t": 3522,
+   "src": "stt",
+   "kind": "final",
+   "turn": 0,
+   "text": "Hi, I need someone to call me back about my order.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 3522,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 0,
+   "text": "Happy to. What's the best number to reach you?",
+   "flushed": true
+  },
+  {
+   "t": 3522,
+   "src": "agent",
+   "kind": "update_config",
+   "min_turn_silence": 1000,
+   "max_turn_silence": 1300
+  },
+  {
+   "t": 3632,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 0,
+   "since_reply_ms": 110
+  },
+  {
+   "t": 3632,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 61
+  },
+  {
+   "t": 3883,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 0,
+   "audio_ms": 2960
+  },
+  {
+   "t": 6592,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 7253,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "Sure, it's seven one three,",
+   "at": 7253,
+   "dur_ms": 2240
+  },
+  {
+   "t": 7848,
+   "src": "stt",
+   "kind": "speech_started",
+   "audio_ts": 6304
+  },
+  {
+   "t": 7849,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure."
+  },
+  {
+   "t": 7948,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure,"
+  },
+  {
+   "t": 9289,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713."
+  },
+  {
+   "t": 9498,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "Sure, it's seven one three,"
+  },
+  {
+   "t": 10392,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "five five five,",
+   "at": 10392,
+   "dur_ms": 1760
+  },
+  {
+   "t": 10549,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-"
+  },
+  {
+   "t": 10863,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-5-"
+  },
+  {
+   "t": 12147,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-555-5555."
+  },
+  {
+   "t": 12191,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "five five five,"
+  },
+  {
+   "t": 13093,
+   "src": "caller",
+   "kind": "say_start",
+   "text": "zero one three four.",
+   "at": 13093,
+   "dur_ms": 2080
+  },
+  {
+   "t": 13247,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-555-5555."
+  },
+  {
+   "t": 13547,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-555-0000."
+  },
+  {
+   "t": 15033,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-555-0134."
+  },
+  {
+   "t": 15187,
+   "src": "caller",
+   "kind": "say_end",
+   "text": "zero one three four."
+  },
+  {
+   "t": 16094,
+   "src": "stt",
+   "kind": "partial",
+   "turn": 1,
+   "text": "Sure, it's 713-555-0134."
+  },
+  {
+   "t": 16322,
+   "src": "stt",
+   "kind": "final",
+   "turn": 1,
+   "text": "Sure, it's 713-555-0134.",
+   "eot_conf": 1.0
+  },
+  {
+   "t": 16323,
+   "src": "agent",
+   "kind": "update_config",
+   "mode": "min_latency"
+  },
+  {
+   "t": 16323,
+   "src": "agent",
+   "kind": "reply_sent",
+   "i": 1,
+   "text": "Thanks. Someone will call you back within the hour.",
+   "flushed": true
+  },
+  {
+   "t": 16434,
+   "src": "tts",
+   "kind": "first_audio",
+   "flush_id": 1,
+   "since_reply_ms": 111
+  },
+  {
+   "t": 16434,
+   "src": "speaker",
+   "kind": "playback_start",
+   "queued_ms": 152
+  },
+  {
+   "t": 16675,
+   "src": "tts",
+   "kind": "flush_done",
+   "flush_id": 1,
+   "audio_ms": 2880
+  },
+  {
+   "t": 19315,
+   "src": "speaker",
+   "kind": "playback_end"
+  },
+  {
+   "t": 20565,
+   "src": "tts",
+   "kind": "termination"
+  },
+  {
+   "t": 20879,
+   "src": "stt",
+   "kind": "termination"
+  }
+ ]
+}
