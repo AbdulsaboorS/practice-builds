@@ -1,0 +1,138 @@
+{
+  "G01": {
+    "version": "A",
+    "scenario": "S03"
+  },
+  "G02": {
+    "version": "A",
+    "scenario": "S08"
+  },
+  "G03": {
+    "version": "A",
+    "scenario": "S12"
+  },
+  "G04": {
+    "version": "B",
+    "scenario": "S17"
+  },
+  "G05": {
+    "version": "B",
+    "scenario": "S05"
+  },
+  "G06": {
+    "version": "B",
+    "scenario": "S06"
+  },
+  "G07": {
+    "version": "A",
+    "scenario": "S16"
+  },
+  "G08": {
+    "version": "B",
+    "scenario": "S12"
+  },
+  "G09": {
+    "version": "A",
+    "scenario": "S01"
+  },
+  "G10": {
+    "version": "B",
+    "scenario": "S15"
+  },
+  "G11": {
+    "version": "A",
+    "scenario": "S09"
+  },
+  "G12": {
+    "version": "B",
+    "scenario": "S14"
+  },
+  "G13": {
+    "version": "B",
+    "scenario": "S07"
+  },
+  "G14": {
+    "version": "B",
+    "scenario": "S02"
+  },
+  "G15": {
+    "version": "A",
+    "scenario": "S10"
+  },
+  "G16": {
+    "version": "B",
+    "scenario": "S09"
+  },
+  "G17": {
+    "version": "B",
+    "scenario": "S13"
+  },
+  "G18": {
+    "version": "B",
+    "scenario": "S01"
+  },
+  "G19": {
+    "version": "A",
+    "scenario": "S06"
+  },
+  "G20": {
+    "version": "B",
+    "scenario": "S11"
+  },
+  "G21": {
+    "version": "A",
+    "scenario": "S15"
+  },
+  "G22": {
+    "version": "B",
+    "scenario": "S03"
+  },
+  "G23": {
+    "version": "A",
+    "scenario": "S17"
+  },
+  "G24": {
+    "version": "A",
+    "scenario": "S13"
+  },
+  "G25": {
+    "version": "A",
+    "scenario": "S07"
+  },
+  "G26": {
+    "version": "B",
+    "scenario": "S04"
+  },
+  "G27": {
+    "version": "B",
+    "scenario": "S10"
+  },
+  "G28": {
+    "version": "B",
+    "scenario": "S16"
+  },
+  "G29": {
+    "version": "A",
+    "scenario": "S02"
+  },
+  "G30": {
+    "version": "A",
+    "scenario": "S14"
+  },
+  "G31": {
+    "version": "A",
+    "scenario": "S04"
+  },
+  "G32": {
+    "version": "A",
+    "scenario": "S11"
+  },
+  "G33": {
+    "version": "B",
+    "scenario": "S08"
+  },
+  "G34": {
+    "version": "A",
+    "scenario": "S05"
+  }
+}

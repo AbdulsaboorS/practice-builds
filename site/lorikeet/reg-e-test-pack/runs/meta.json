@@ -1,0 +1,11 @@
+{
+  "date": "Nov 1, 2026",
+  "limits": [
+    "<b>The agent is a stand-in, not Lorikeet's Concierge.</b> Each reply came from a fresh Claude Sonnet sub-agent that saw only the SOP and the caller's words. It never saw the rules or the checks.",
+    "<b>Grading was blind to the SOP.</b> A separate Claude grader saw only the caller, the reply, the logged actions and the checks. The bare-bones runs were shuffled together, round 1 mixed draft and Fix 1 replies under shuffled IDs, and round 2 was graded in its own pass. Every verdict carries the quote it was based on, and I spot-checked the grader against the replies.",
+    "<b>Few samples.</b> The bare-bones SOP ran twice per scenario; each flawed and fixed SOP ran once. Model output varies run to run, so treat these as small samples, not rates.",
+    "<b>Single-turn calls.</b> Each scenario is the caller's opening message and the agent's first reply. Real calls go back and forth, which is where some failures hide.",
+    "<b>Scope.</b> Debit card and checking account disputes under Regulation E only. Credit cards (Regulation Z), EBT benefits, and the special prepaid-account rules are out of scope.",
+    "<b>Not legal advice.</b> Rules are quoted from the regulation, its official interpretation and CFPB's FAQ, but a real deployment needs the customer's compliance team to review the checks."
+  ]
+}

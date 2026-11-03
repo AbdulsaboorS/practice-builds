@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="An AI support agent tested on 17 disputed-payment calls under US Regulation E: its own judgment mostly held up, and a flawed SOP is what broke it." />
+<link rel="icon" href="data:," />
+<title>Reg E Dispute Test Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#EDF1ED; --surface:#FFFFFF; --surface2:#F4F7F4;
+    --ink:#12211B; --muted:#5C6D64; --faint:#84948B; --line:#DCE4DC; --line2:#CBD6CC;
+    --green:#0B7A55; --mint:#E2F3EA; --mint2:#CDEEDD;
+    --amber:#9A5B00; --amber-bg:#FFF4D6; --amber-line:#F0D48A;
+    --red:#B42318; --red-bg:#FDECEA; --red-line:#F3C2BC;
+    --shadow:0 10px 30px rgba(18,33,27,.08), 0 2px 6px rgba(18,33,27,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A100D; --surface:#131B17; --surface2:#1A241F;
+      --ink:#EDF5F0; --muted:#A9BBAF; --faint:#8A9C91; --line:#26332C; --line2:#34463C;
+      --green:#2EBD8A; --mint:#152A20; --mint2:#1E3A2C;
+      --amber:#F5C15C; --amber-bg:#33270F; --amber-line:#6B531F;
+      --red:#FF8A7A; --red-bg:#3A1A17; --red-line:#6E2E28;
+      --shadow:0 14px 34px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A100D; --surface:#131B17; --surface2:#1A241F;
+    --ink:#EDF5F0; --muted:#A9BBAF; --faint:#8A9C91; --line:#26332C; --line2:#34463C;
+    --green:#2EBD8A; --mint:#152A20; --mint2:#1E3A2C;
+    --amber:#F5C15C; --amber-bg:#33270F; --amber-line:#6B531F;
+    --red:#FF8A7A; --red-bg:#3A1A17; --red-line:#6E2E28;
+    --shadow:0 14px 34px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--green);font-weight:700}
+  :focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:6px}
+  .wrap{max-width:1040px;margin:0 auto;padding:22px 20px 40px}
+  .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .brand{font-weight:800;letter-spacing:-.01em}
+  .pill{margin-left:auto;padding:5px 11px;border-radius:999px;font-size:12.5px;font-weight:700;border:1px solid var(--amber-line);background:var(--amber-bg);color:var(--amber)}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin:0 0 8px}
+  h1{margin:0 0 22px;font-size:clamp(32px,5.4vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:800;max-width:900px}
+  h1 em{font-style:normal;color:var(--red)}
+  .nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+  .num{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow)}
+  .num .k{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
+  .num .v{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:4px 0 2px}
+  .num .v small{font-size:22px;color:var(--faint);font-weight:700}
+  .num .d{font-size:14px;color:var(--muted)}
+  .num.ok .v{color:var(--green)} .num.bad{border-color:var(--red-line)} .num.bad .v{color:var(--red)} .num.fix{border-color:var(--mint2)} .num.fix .v{color:var(--green)}
+  .ex{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow)}
+  .ex h2{margin:0 0 12px;font-size:15px;letter-spacing:.02em}
+  .ex h2 span{color:var(--muted);font-weight:600}
+  .line{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--line);align-items:baseline}
+  .line:first-of-type{border-top:0}
+  .line b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .line p{margin:0;font-size:15.5px}
+  .line.sop p{font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--muted)}
+  .line.bad p{color:var(--red);font-weight:600}
+  .line.good p{color:var(--green);font-weight:600}
+  .law{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+  .so{margin:18px 0 0;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .so p{margin:0;font-size:17px;font-weight:700;flex:1 1 420px}
+  .btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:999px;text-decoration:none;font-size:14.5px}
+  .btn.primary{background:var(--ink);color:var(--bg)}
+  .btn.ghost{border:1px solid var(--line2);background:var(--surface);color:var(--ink)}
+  footer{margin-top:22px;font-size:12.5px;color:var(--faint)}
+  @media (max-width:760px){
+    .wrap{padding:16px 16px 32px}
+    .nums{grid-template-columns:1fr}
+    .num{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;padding:12px 16px}
+    .num .k{grid-column:1/-1}
+    .num .v{font-size:36px}
+    .line{grid-template-columns:1fr;gap:2px}
+    .pill{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><span class="brand">Reg E Dispute Test Pack</span><span class="pill">Unofficial concept, mock data only</span></div>
+
+  <p class="eyebrow" id="eyebrow"></p>
+  <h1>The AI mostly knew the rules. <em>The SOP broke them.</em></h1>
+
+  <div class="nums" id="nums"></div>
+
+  <div class="ex">
+    <h2>One call from the run <span>(scenario S05, a scam victim)</span></h2>
+    <div class="line"><b>Caller</b><p id="exCaller"></p></div>
+    <div class="line sop"><b>Bad SOP said</b><p id="exSop"></p></div>
+    <div class="line bad"><b>So the agent said</b><p id="exBad"></p></div>
+    <div class="line good"><b>After the fix</b><p id="exGood"></p></div>
+    <p class="law">Under Reg E, transfers made after a scammer tricks someone into sharing a code are unauthorized. <a href="https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/">CFPB FAQ</a></p>
+  </div>
+
+  <div class="so">
+    <p>Before a fintech goes live, test the SOP it hands over, not just the agent. This pack does it in 17 calls.</p>
+    <a class="btn primary" href="details.html">See every call and check</a>
+    <a class="btn ghost" href="scenarios.json" download>Download the 17 scenarios</a>
+  </div>
+
+  <footer>Pinecrest and its SOPs are fictional. Stand-in agent and grader: Claude, graded blind, run <span id="date"></span>. Not affiliated with Lorikeet. Not legal advice. Built by Abdulsaboor Shaikh.</footer>
+</main>
+<script>
+const D = __DATA__;
+const T = D.tally, n = D.scen.scenarios.length, $ = id => document.getElementById(id);
+$("eyebrow").textContent = `${n} disputed-payment calls, graded against US Regulation E`;
+$("nums").innerHTML = [
+  ["ok", "Bare-bones SOP", D.bare.pass, D.bare.n, "calls passed every check. The model's own judgment."],
+  ["bad", "SOP with common mistakes", T.A.scen_pass, n, "passed. The agent followed the SOP's mistakes."],
+  ["fix", "Same SOP, fixed", T.C.scen_pass, n, "passed after two rounds of fixes."]
+].map(([c,k,v,of,d]) => `<div class="num ${c}"><div class="k">${k}</div><div class="v">${v}<small>/${of}</small></div><div class="d">${d}</div></div>`).join("");
+$("exCaller").textContent = `"${D.example.caller}"`;
+$("exSop").textContent = `"${D.example.sop_line}"`;
+$("exBad").textContent = `"...${D.example.bad}"`;
+$("exGood").textContent = `"${D.example.good}..."`;
+$("date").textContent = D.meta.date;
+</script>
+</body>
+</html>

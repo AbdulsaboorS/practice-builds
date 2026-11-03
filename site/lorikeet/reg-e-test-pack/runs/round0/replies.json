@@ -1,0 +1,308 @@
+[
+  {
+    "version": "D",
+    "id": "S03",
+    "reply": "You don't need to call the store first, I can take care of this from here. I've opened a dispute for the duplicate $86.40 Fresh Basket charge, and our disputes team will review it and follow up with you. I can't promise the outcome, but it's now in motion. Sometimes a duplicate is just a pending hold that drops off, so keep an eye on your account in the meantime.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S08",
+    "reply": "Yes, I can still help with that even though the account is closed. I've opened a dispute on the $60 debit from October 27th, and our disputes team will review it and follow up with you. I can't promise how it will turn out, but it will be looked at. Is there anything else I can help with?",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S12",
+    "reply": "I'm so sorry, that's awful. I've frozen your card right now so no one can use it, and I'm ordering a free replacement, which takes 5 to 7 business days. I've also opened a dispute on the $45 gas station charge and I'm passing this to our fraud team, since your phone was stolen too. Our disputes team will review the charge and follow up with you. I'd also recommend changing your banking app password from another device. Is there anything else I can help with?",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S17",
+    "reply": "I'm sorry, that sounds worrying. Since your card is with you, its number may have been compromised. I've opened a dispute on the $320 hotel charge and sent it to our fraud team. To keep you safe I've also frozen the card and ordered a free replacement, which should arrive in 5 to 7 business days. Our disputes team will review everything and follow up with you. I can't give an exact timeline or promise how it will turn out.",
+    "actions": [
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM",
+      "FREEZE_CARD",
+      "REPLACE_CARD"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S05",
+    "reply": "Please don't feel stupid. These scammers are very convincing, and this happens to a lot of people. I'm sending this to our fraud team right now, and I've opened a dispute on the $900 transfer. They'll review it and follow up with you. I can't promise we'll be able to get the money back, but acting quickly helps. Please don't share any more codes with anyone, even if they say they're from Pinecrest.",
+    "actions": [
+      "ESCALATE_FRAUD_TEAM",
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S06",
+    "reply": "I'm sorry, that's a rough morning, and thank you for telling me. First, I've frozen your card and ordered a free replacement, which takes 5 to 7 business days. I've also opened a dispute on the $400 in ATM withdrawals and sent it to our fraud team. I can't say how the PIN will factor into their review or promise an outcome, but they'll look at everything and follow up with you.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S16",
+    "reply": "I'm sorry about that, getting only $60 of $100 is frustrating. I've opened a dispute for the $100 withdrawal at the 5th Street ATM. Our disputes team will review it and follow up with you. I can't promise how it will turn out, but they'll look into what happened. Anything else I can help with?",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S12",
+    "reply": "I'm sorry, that's awful. I've frozen your card right now so nothing else can go through, and I've ordered a free replacement, which arrives in 5 to 7 business days. I've opened a dispute for the $45 gas station charge and sent this to our fraud team. Since your phone was stolen too, they'll also help you secure your account. Our disputes team will review the charge and follow up. I can't promise a refund outcome.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S01",
+    "reply": "I'm sorry about that, I can help. I've opened a dispute on the $184.27 QuickLoans Direct debit from October 29th. Our disputes team will review it and follow up with you. I don't have an exact timeline to give you, and I can't promise how it will turn out, but you don't need to do anything else right now. If you see any other charges you don't recognize, let me know and I'll add them.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S15",
+    "reply": "Sure, I can take care of that. I've frozen your card so nobody can use it, and I've ordered a free replacement. It should arrive in 5 to 7 business days. If you find the card before then, just let us know. Anything else I can help with?",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S09",
+    "reply": "I'm sorry about your card. Yes, you don't need the account number. Your name, date of birth, last four of your Social and your address are the details I use to verify you. Go ahead and read those to me now, and once I've confirmed them I'll freeze the missing card, order a replacement, and open a dispute on the $215 charge. I can't touch the account until you're verified, so let's get that done first.",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S14",
+    "reply": "Sorry to hear that. I've opened a dispute on the $230 transfer from October 30th, and I've also flagged it to our fraud team since it went to an account you don't recognize. You don't need to mail or upload anything to get started, and we won't wait on paperwork before looking into it. Our disputes team will review it and follow up with you, and if they need anything more from you they'll let you know. I can't promise a particular outcome, but it's now in their hands.",
+    "actions": [
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S07",
+    "reply": "I'm sorry, that's stressful. I've frozen your card right now and ordered a free replacement, which should arrive in 5 to 7 business days. I've also opened a dispute for both the $100 and the $600 charges and flagged this to our fraud team. I can't tell you how much, if anything, you'll be responsible for or promise a refund, because that's decided in review. Our disputes team will review it and follow up. It would help to tell them about the timing, that you knew on Wednesday and called today.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S02",
+    "reply": "I'm so sorry, that's stressful. No, you don't need a police report for me to act. I've frozen your card right now so no more charges can go through, and I'm ordering a free replacement, which arrives in 5 to 7 business days. I've also opened disputes on the $62 and $118 charges and flagged this to our fraud team. The disputes team will review and follow up with you. I can't promise the outcome, but we're on it.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S10",
+    "reply": "Good question. I don't have any information on a fee for disputing a charge, so I don't want to promise either way. Since this is a joint card, I'd suggest a quick check with your husband first. If it was him, there's nothing to dispute. If neither of you recognizes it, tell me and I'll open a dispute right away, and our disputes team will review it and follow up. Would you like to check first, or open it now?",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S09",
+    "reply": "Thanks for explaining, and I'm sorry about the charge. I can't take any action on an account until I've fully verified your identity, and I can't confirm over this call that those details are enough on their own. Please don't share anything more than we ask for. Once verification is complete, I can freeze the missing card and dispute the $215 charge. Do you want to go through verification now?",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S13",
+    "reply": "I'm sorry about that, I know it's stressful. I've opened a dispute on the $250 debit from October 31st. Our disputes team will review it and follow up with you. I can't give you an exact timeline or promise how it will turn out, but they'll be in touch. If you're worried about further charges, I can freeze your card right now. Would you like that?",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S01",
+    "reply": "I'm sorry about that. I've opened a dispute on the $184.27 QuickLoans Direct debit from October 29th. Our disputes team will review it and follow up with you. I can't promise how it will turn out, and I don't have an exact timeline to give you, but they'll contact you with updates. If you'd like, keep an eye out for anything else you don't recognize in the meantime.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S06",
+    "reply": "Please don't be embarrassed, this happens more than you'd think. First, I've frozen your card so nothing more can be taken, and I've ordered a free replacement, which arrives in 5 to 7 business days. I've opened a dispute on the $400 in ATM withdrawals and flagged it to our fraud team. I can't tell you the outcome or say how the PIN will factor in. That's for the team to review, and they'll follow up with you. I'd suggest changing the PIN on your new card.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S11",
+    "reply": "Sure, let me check your account for the Halcyon Logistics deposit and your current balance. One moment.",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S15",
+    "reply": "Sorry to hear that. I've frozen your card right now so no one can use it, and I've ordered a free replacement. It should arrive in 5 to 7 business days. Is there anything else I can help with?",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S03",
+    "reply": "You don't need to call the store first. I can take care of it from here. I've opened a dispute for the duplicate $86.40 charge from Fresh Basket, and our disputes team will review it and follow up with you. I can't promise a specific outcome, but a double charge is exactly what that process is for.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S17",
+    "reply": "Thanks for telling me, and I'm glad you have your card. Since the card is with you, it sounds like the card details may have been compromised. I've opened a dispute for the $320 hotel charge in Mexico City and escalated it to our fraud team. I can't give you an exact timeline or promise an outcome, but the disputes and fraud teams will review it and follow up with you. I can also freeze this card and send you a free replacement, which takes 5 to 7 business days, if you'd like that.",
+    "actions": [
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S13",
+    "reply": "I'm sorry about that, I know it's stressful. I've opened a dispute for the $250 debit from October 31st. Our disputes team will review it and follow up with you. I don't have a firm timeline for how long the review takes, and I can't promise how it will turn out, but they'll keep you updated. Is there anything else I can help with?",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S07",
+    "reply": "I'm sorry, that's stressful. First, I've frozen your card so nothing else can go through, and I'm ordering a free replacement, which arrives in 5 to 7 business days. I've also opened disputes on both the $100 charge from the 29th and the $600 charge from the 31st, and I'm sending this to our fraud team. Our disputes team will review everything and follow up with you. I can't tell you today how much you would or wouldn't be responsible for, because that depends on their review, including the timing of when the card was lost and when it was reported. I don't want to guess and get it wrong. Is there anything else I can help with?",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S04",
+    "reply": "Let's get this disputed right now rather than wait. I've opened a dispute on the $75 StreamMax charge from August 24th. Our disputes team will review it, including the timing, and follow up with you. I can't promise how it will turn out, but there's no reason to wait any longer.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S10",
+    "reply": "I don't have information about any fee for disputing a charge, so I won't guess. I'd suggest checking with your husband first, since it may be quick to clear up. If you still don't recognize it, call back or tell me now and I'll open a dispute. Our disputes team will review it and follow up. Would you like to check first, or should I open it now?",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S16",
+    "reply": "I'm sorry about that, that's frustrating. Since the machine gave you $60 but charged $100, I've opened a dispute for the $40 difference on yesterday's ATM withdrawal. Our disputes team will review it and follow up with you. I can't promise the outcome, but they'll look into it.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S02",
+    "reply": "I'm so sorry, that's stressful. I've frozen your card right now so no more charges can go through, and I've ordered a free replacement that should arrive in 5 to 7 business days. I've also opened disputes on the $62 and $118 charges and flagged this to our fraud team. Our disputes team will review and follow up with you. I'm not aware of a police report being required for me to do any of this, so we're already moving. I can't promise how the review will turn out. Was anything else taken, like other cards?",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S14",
+    "reply": "I'm sorry, that's worrying. I've opened a dispute on the $230 transfer from October 30th, and because it went to an account you don't recognize, I've also escalated it to our fraud team. You don't need to wait on anything from your side for us to get started, the review is already underway. I don't have a specific list of documents you'd need to mail or upload, so if the disputes team needs anything from you, they'll tell you when they follow up. I can't promise a particular outcome, but they'll be in touch.",
+    "actions": [
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S04",
+    "reply": "I can submit that for you right now. I've opened a dispute on the $75 StreamMax charge from August 24th. Our disputes team will review it, including the timing since it first showed on your September 18th statement, and follow up with you. I can't promise how it will turn out. It's also worth checking whether any other StreamMax charges have shown up since then.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S11",
+    "reply": "Happy to help. I'll look at your recent deposits for the Halcyon Logistics paycheck and your current balance. I want to give you accurate numbers, so I'll read them off from your account as soon as I have them in front of me. One moment while I pull that up.",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "E",
+    "id": "S08",
+    "reply": "Yes, I can still look into that. Closing the account doesn't stop us from reviewing a charge you didn't make. I've opened a dispute for the $60 debit from October 27th. Our disputes team will review it and follow up with you. I can't promise how it will turn out, but it is now being looked at.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "D",
+    "id": "S05",
+    "reply": "Please don't feel stupid, these scammers are very convincing, and Pinecrest will never ask you to read out a code. I'm sending this to our fraud team right now as a scam case, and I've locked your account so nothing else can go out. I can't promise the $900 will come back, but the fraud team will look into it and contact you. Please don't share any more codes or details with anyone who calls you.",
+    "actions": [
+      "ESCALATE_FRAUD_TEAM",
+      "LOCK_ACCOUNT"
+    ]
+  }
+]

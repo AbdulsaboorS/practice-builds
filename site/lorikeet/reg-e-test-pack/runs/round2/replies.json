@@ -1,0 +1,154 @@
+[
+  {
+    "version": "C",
+    "id": "S06",
+    "reply": "Please don't be embarrassed. I'm freezing your card right now and ordering a free replacement, which arrives in 5 to 7 business days. I'm also opening a dispute on the $400 in ATM withdrawals today, and the investigation starts now. Having the PIN with the card doesn't change how we handle this or raise what you could owe. Liability is capped at $50 since you're reporting within 2 business days of finding out, and the fraud team calculates the final amount. I can't promise the outcome, but we decide within 10 business days or give a provisional credit in that time if we need longer.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S10",
+    "reply": "No, there's no fee for disputes, whether or not the charge turns out to be legitimate. I've opened a dispute on the $42 charge now so the investigation is underway. If you confirm with your husband that it was his, just let us know. I can't promise an outcome, but you won't be charged for raising it.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S16",
+    "reply": "I'm sorry about that. I've opened a dispute for the $40 difference on yesterday's ATM withdrawal, and the investigation has started now. There's no fee, and we decide within 10 business days. If we need longer, we'd give you a provisional credit within those 10 business days and finish within 45 days. I can't promise the outcome, but we'll look into it.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S12",
+    "reply": "I'm sorry, that's stressful. I've frozen your card right now and ordered a free replacement, which arrives in 5 to 7 business days. Since your phone was stolen too, someone may have access to your login or codes, so I've also locked your account until your credentials are reset. I've opened a dispute on the $45 gas station charge. Because you're reporting right away, your liability is capped at $50, and our fraud team calculates the final amount. I can't promise the outcome, but the investigation has started and there's no fee.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "LOCK_ACCOUNT",
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S09",
+    "reply": "Yes, that's enough. Since you don't have your account or card number, I can identify your account with your full name, date of birth, last four of your Social and your address. Go ahead and give me those now. Once I have them, I'll freeze your card, order a free replacement, and open a dispute on the $215 charge right away.",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S08",
+    "reply": "Yes, we can still look into it. A closed account doesn't stop us. I've opened a dispute on the $60 debit from October 27th right now, and the investigation has started. We aim to decide within 10 business days, and if we need longer we'd provide a provisional credit within that time. There's no fee for disputes, and I can't promise the outcome, but we'll keep you updated.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S05",
+    "reply": "Please don't feel stupid, these scammers are very convincing, and I'm glad you called. Because they had your code, I'm locking your account right now until your credentials are reset. I'm opening a dispute on the $900 transfer today, and the investigation starts now. Being tricked into sharing a code doesn't stop us from investigating. I'm also sending this to our fraud team. I can't promise the money will come back, but we decide within 10 business days, or give a provisional credit in that time if we need longer. There's no fee.",
+    "actions": [
+      "LOCK_ACCOUNT",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S14",
+    "reply": "No, you don't need to mail or upload anything for us to start. I'm opening the dispute for the $230 transfer right now, and the investigation begins on this call without waiting for any documents. We may ask you to confirm in writing, and if so it's due within 10 business days through the dispute form in the app. I'm sending that form to you now. There's no fee for disputes.",
+    "actions": [
+      "OPEN_DISPUTE",
+      "SEND_DISPUTE_FORM"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S04",
+    "reply": "No, it's not too late. Disputes need to be raised within 60 days of the statement that first showed the charge, and a September 18th statement is well within that. I'm opening the dispute on the $75 StreamMax charge now, and the investigation starts today. We aim to decide within 10 business days. If we need longer, you'd get a provisional credit within those 10 business days, and we'd finish within 90 days for a card purchase. There's no fee, and I can't promise the outcome.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S01",
+    "reply": "I'm sorry about that. I'm opening a dispute on the $184.27 QuickLoans Direct debit right now, and the investigation starts today. If you can give me your account number or card number I'll tie it to the right account. We aim to decide within 10 business days. If we need longer, we'll put a provisional credit on your account within those 10 business days and finish within 45 days. There's no fee for disputes, and I can't promise the outcome, but we'll look into it fully.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S07",
+    "reply": "I'm sorry about that. I've frozen your card right now and ordered a free replacement, which arrives in 5 to 7 business days. I've also opened a dispute on the $100 and $600 charges, so the investigation starts today. On what you owe: because you learned of the loss on the 28th and are reporting after 2 business days, your liability is capped at $500, so you would not be responsible for the full $700. Our fraud team calculates the final amount, and I can't promise the outcome, but I've flagged it to them. We aim to decide within 10 business days, and if we need longer we'd give a provisional credit within that time. There's no fee for disputes.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE",
+      "ESCALATE_FRAUD_TEAM"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S02",
+    "reply": "I'm so sorry, that's stressful. No, you don't need a police report. I'm freezing your card right now and ordering a free replacement, which arrives in 5 to 7 business days. I'm also opening a dispute on the $62 and $118 charges today, and the investigation starts now. Because you're reporting this the same day, your liability on unauthorized charges is capped at $50. The fraud team calculates the final amount. We decide within 10 business days, or give a provisional credit in that time if we need longer. I can't promise the outcome, but there's no fee to dispute.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S17",
+    "reply": "I'm sorry, that sounds stressful. Since that card number may be compromised, I've frozen your card and ordered a free replacement, arriving in 5 to 7 business days. I've also opened a dispute for the $320 Mexico City charge, and the investigation has started. We decide within 10 business days. If we need longer, we give a provisional credit within 10 business days and finish within 90 days, because it's a card purchase at a merchant outside the US. There's no fee, and I can't promise the outcome.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD",
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S15",
+    "reply": "Of course. I've frozen your debit card right now so no one can use it, and I've ordered a free replacement that should arrive in 5 to 7 business days. If you spot any charge you don't recognize later, call us and we'll open a dispute right away.",
+    "actions": [
+      "FREEZE_CARD",
+      "REPLACE_CARD"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S11",
+    "reply": "Happy to help with that. Let me check your account for the Halcyon Logistics deposit and your current balance, and I'll read them out to you in just a moment.",
+    "actions": [
+      "ANSWER_ONLY"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S13",
+    "reply": "I'm sorry about that, I've opened a dispute for the $250 debit from October 31st, so the investigation has started. Because your account is in its first 30 days after your first deposit, the timeline is longer. We decide within 20 business days. If we need more time, we give you a provisional credit within those 20 business days and finish within 90 days. There's no fee for disputes, and I can't promise the outcome, but the fraud team will look into it.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  },
+  {
+    "version": "C",
+    "id": "S03",
+    "reply": "You don't need to call the store first. I'm opening a dispute for the duplicate $86.40 Fresh Basket charge right now. You're welcome to contact the store too, but we won't wait on that. We aim to decide within 10 business days. If we need longer, you'd get a provisional credit within 10 business days, and we'd finish within 90 days since it's a card purchase. There's no fee, and I can't promise the outcome.",
+    "actions": [
+      "OPEN_DISPUTE"
+    ]
+  }
+]

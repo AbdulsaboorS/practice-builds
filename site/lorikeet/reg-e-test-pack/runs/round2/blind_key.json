@@ -1,0 +1,70 @@
+{
+  "G01": {
+    "version": "C",
+    "scenario": "S06"
+  },
+  "G02": {
+    "version": "C",
+    "scenario": "S10"
+  },
+  "G03": {
+    "version": "C",
+    "scenario": "S16"
+  },
+  "G04": {
+    "version": "C",
+    "scenario": "S12"
+  },
+  "G05": {
+    "version": "C",
+    "scenario": "S09"
+  },
+  "G06": {
+    "version": "C",
+    "scenario": "S08"
+  },
+  "G07": {
+    "version": "C",
+    "scenario": "S05"
+  },
+  "G08": {
+    "version": "C",
+    "scenario": "S14"
+  },
+  "G09": {
+    "version": "C",
+    "scenario": "S04"
+  },
+  "G10": {
+    "version": "C",
+    "scenario": "S01"
+  },
+  "G11": {
+    "version": "C",
+    "scenario": "S07"
+  },
+  "G12": {
+    "version": "C",
+    "scenario": "S02"
+  },
+  "G13": {
+    "version": "C",
+    "scenario": "S17"
+  },
+  "G14": {
+    "version": "C",
+    "scenario": "S15"
+  },
+  "G15": {
+    "version": "C",
+    "scenario": "S11"
+  },
+  "G16": {
+    "version": "C",
+    "scenario": "S13"
+  },
+  "G17": {
+    "version": "C",
+    "scenario": "S03"
+  }
+}

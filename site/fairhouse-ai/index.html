@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairHouse AI</title>
+<meta name="description" content="AI that checks affordable-housing tenant income files with the proof highlighted.">
+<style>
+  :root { --bg:#fafaf8; --fg:#1a1a1a; --muted:#5f5f5a; --line:#e4e3de; --card:#fff; --accent:#2f5d50; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141413; --fg:#ececea; --muted:#a3a39d; --line:#2c2c2a; --card:#1c1c1b; --accent:#8fc3b1; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 20px 64px; }
+  .back { display:inline-block; padding:12px 0; color:var(--accent); text-decoration:none; font-size:14px; font-weight:600; }
+  h1 { font-size:28px; line-height:1.2; margin:8px 0 6px; }
+  .for { color:var(--muted); margin:0 0 20px; font-size:14px; }
+  video { width:100%; border-radius:10px; background:#000; display:block; }
+  p { margin:16px 0; }
+  ol { padding-left:22px; }
+  li { margin:6px 0; }
+  .links { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
+  .btn { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); text-decoration:none; font-weight:600; font-size:15px; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:var(--bg); }
+  .note { font-size:14px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">All builds</a>
+  <h1>FairHouse AI</h1>
+  <p class="for">Agentic Enterprise AI Hackathon with Box + AWS, Seattle, Oct 2026. Placed 2nd. Team project.</p>
+
+  <video controls playsinline preload="metadata" poster="poster.jpg" src="fairhouse-ai.mp4"></video>
+
+  <p>AI that checks affordable-housing tenant income files for the Seattle Office of Housing, with the proof highlighted, so every file can be reviewed every year under the same rules. Today the city typically reviews files only every 3 years, and only a 20% sample.</p>
+  <ol>
+    <li><strong>Read:</strong> tenant documents land in a Box folder and the text is extracted.</li>
+    <li><strong>Extract:</strong> Claude on AWS Bedrock pulls out wages, deposits and benefits, each with its exact quote and page.</li>
+    <li><strong>Calculate:</strong> plain code applies the city's formula. No AI in the math.</li>
+    <li><strong>Validate:</strong> Claude checks for missing documents, mismatches and suspicious items.</li>
+    <li><strong>Explain:</strong> the reviewer walks through each step with the source highlighted and approves with Box Sign.</li>
+  </ol>
+
+  <div class="links">
+    <a class="btn primary" href="https://github.com/seapeppers/fairHouseAi">See the repo</a>
+  </div>
+  <p class="note">All tenant files in the demo are synthetic. There's no hosted version, so the video is the demo.</p>
+</main>
+</body>
+</html>

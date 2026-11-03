@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="A Regulation E test pack for AI support agents handling disputed payments: 17 scenarios, pass/fail checks from the regulation, and a before/after run on a fictional bank." />
+<link rel="icon" href="data:," />
+<title>Dispute SOP Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface2:#F4F4F6; --surface3:#EDEDF0;
+    --ink:#1A1A1A; --muted:#5F6068; --faint:#8C8D94;
+    --line:#E7E7EA; --line2:#D9D9DE;
+    --green:#1F8A3B; --green2:#4348DC; --mint:#EDF7EF; --mint2:#CFE9D6;
+    --amber:#9A5B00; --amber-bg:#FFF6DA; --amber-line:#F2DA8C;
+    --red:#C2341F; --red-bg:#FDF0EE; --red-line:#F2C9C2;
+    --accent:#4348DC; --accent-bg:#EEEFFC;
+    --shadow:0 10px 30px rgba(20,20,30,.08), 0 2px 6px rgba(20,20,30,.05);
+    --shadow-sm:0 2px 8px rgba(20,20,30,.06);
+    --r-lg:20px; --r-md:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+    --bg:#0F0F11; --surface:#18181B; --surface2:#1F1F23; --surface3:#26262B;
+    --ink:#F2F2F3; --muted:#A6A7AE; --faint:#7E7F86;
+    --line:#2A2A2F; --line2:#36363C;
+    --green:#6FD58A; --green2:#8B8FF2; --mint:#142519; --mint2:#1F3A27;
+    --amber:#F5C15C; --amber-bg:#2E2510; --amber-line:#5E4A1C;
+    --red:#FF8B78; --red-bg:#2C1916; --red-line:#5E2A23;
+    --accent:#8B8FF2; --accent-bg:#1E1F3A;
+      --shadow:0 14px 34px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
+      --shadow-sm:0 2px 8px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+  --bg:#0F0F11; --surface:#18181B; --surface2:#1F1F23; --surface3:#26262B;
+  --ink:#F2F2F3; --muted:#A6A7AE; --faint:#7E7F86;
+  --line:#2A2A2F; --line2:#36363C;
+  --green:#6FD58A; --green2:#8B8FF2; --mint:#142519; --mint2:#1F3A27;
+  --amber:#F5C15C; --amber-bg:#2E2510; --amber-line:#5E4A1C;
+  --red:#FF8B78; --red-bg:#2C1916; --red-line:#5E2A23;
+  --accent:#8B8FF2; --accent-bg:#1E1F3A;
+    --shadow:0 14px 34px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
+    --shadow-sm:0 2px 8px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  button{font:inherit;cursor:pointer;color:inherit}
+  a{color:var(--accent);font-weight:600}
+  ::selection{background:var(--accent-bg)}
+  :focus-visible{outline:3px solid var(--green2);outline-offset:2px;border-radius:6px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 56px}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace}
+
+  .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar-in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:11px}
+  .mark{width:36px;height:36px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+  .brand-name{font-weight:700;font-size:18px;letter-spacing:-.02em;line-height:1}
+  .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .pills{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+  .pill.warn{border-color:var(--amber-line);background:var(--amber-bg);color:var(--amber)}
+
+  .hero{padding:34px 0 8px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);border-radius:2px}
+  h1{margin:8px 0 12px;font-size:clamp(30px,4.6vw,46px);line-height:1.05;letter-spacing:-.03em;font-weight:700;max-width:800px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{margin:0;max-width:720px;color:var(--muted);font-size:17px}
+  .lede b{color:var(--ink)}
+
+  .scores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0 8px}
+  .score{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .score.bad{border-color:var(--red-line)}
+  .score.good{border-color:var(--mint2)}
+  .score-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .score-v{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:6px}
+  .score.bad .score-v{color:var(--red)}
+  .score.good .score-v{color:var(--green)}
+  .score-v small{font-size:18px;color:var(--muted);font-weight:700}
+  .score-d{color:var(--muted);font-size:14px;margin-top:4px}
+  .runline{font-size:12.5px;color:var(--faint);margin:6px 0 0}
+
+  section{margin-top:40px}
+  h2{font-size:24px;letter-spacing:-.02em;margin:0 0 6px}
+  .sec-note{margin:0 0 16px;color:var(--muted);max-width:760px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+
+  .why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .why .card{padding:18px}
+  .why b{display:block;margin-bottom:6px;font-size:15.5px}
+  .why p{margin:0;color:var(--muted);font-size:14.5px}
+  .why q{color:var(--ink);font-style:italic}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .fbtn{border:1px solid var(--line2);background:var(--surface);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;min-height:40px}
+  .fbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .rows{overflow:hidden}
+  .row{border-top:1px solid var(--line)}
+  .row:first-child{border-top:0}
+  .row-h{width:100%;display:grid;grid-template-columns:52px minmax(0,1fr) 104px 104px 104px 24px;gap:12px;align-items:center;padding:14px 18px;background:none;border:0;text-align:left;min-height:56px}
+  .row-h:hover{background:var(--surface2)}
+  .rid{font-family:"Geist Mono",monospace;font-size:13px;color:var(--faint);font-weight:600}
+  .rtitle{font-weight:700}
+  .rrules{display:block;font-size:12px;color:var(--faint);font-weight:600;margin-top:2px}
+  .chip{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:700;border:1px solid;white-space:nowrap}
+  .chip.pass{background:var(--mint);color:var(--green);border-color:var(--mint2)}
+  .chip.fail{background:var(--red-bg);color:var(--red);border-color:var(--red-line)}
+  .chip.warn{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-line)}
+  .chip.na{background:var(--surface2);color:var(--muted);border-color:var(--line)}
+  .colh{display:grid;grid-template-columns:52px minmax(0,1fr) 104px 104px 104px 24px;gap:12px;padding:10px 18px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);border-bottom:1px solid var(--line)}
+  .caret{transition:transform .2s;color:var(--faint)}
+  .row.open .caret{transform:rotate(90deg)}
+  .detail{display:none;padding:0 18px 18px}
+  .row.open .detail{display:block}
+  .caller{background:var(--surface2);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;font-size:14.5px;margin-bottom:12px}
+  .caller b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px}
+  .pair{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .score.mid{border-color:var(--amber-line)}
+  .score.mid .score-v{color:var(--amber)}
+  .round{margin:18px 0 10px;font-size:15px}
+  .round span{color:var(--muted);font-weight:600}
+  .side{border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;min-width:0}
+  .side h4{margin:0 0 6px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint)}
+  .reply{font-size:14.5px;margin:0 0 8px;white-space:pre-wrap}
+  .acts{font-family:"Geist Mono",monospace;font-size:12px;color:var(--muted);margin-bottom:10px;word-break:break-word}
+  .check{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}
+  .check .ev{color:var(--muted);font-size:13px;margin-top:3px}
+  .check .ct{font-weight:600}
+  .sev{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+
+  .diff{display:grid;gap:12px}
+  .dline{padding:14px 16px}
+  .dline .n{font-family:"Geist Mono",monospace;font-size:12px;color:var(--faint);font-weight:600;margin-bottom:6px}
+  .old,.new{font-size:14.5px;padding:8px 12px;border-radius:10px;margin:0}
+  .old{background:var(--red-bg);color:var(--ink);border:1px solid var(--red-line);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--red) 55%,transparent)}
+  .new{background:var(--mint);border:1px solid var(--mint2);margin-top:8px}
+
+  .rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .rule{padding:16px}
+  .rule .rh{display:flex;gap:10px;align-items:baseline;margin-bottom:6px}
+  .rule .rh span{font-family:"Geist Mono",monospace;font-size:12.5px;color:var(--accent);font-weight:600}
+  .rule p{margin:0 0 8px;font-weight:600}
+  .rule blockquote{margin:0 0 8px;padding:8px 12px;border-left:3px solid var(--mint2);color:var(--muted);font-size:13.5px;background:var(--surface2);border-radius:0 8px 8px 0}
+  .rule .cite{font-size:12.5px}
+
+  .use{padding:20px}
+  .use ol{margin:0;padding-left:20px}
+  .use li{margin:8px 0}
+  .dl{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .dl a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--line2);border-radius:999px;background:var(--surface);text-decoration:none;font-size:13.5px;font-weight:700;color:var(--ink)}
+  .dl a:hover{border-color:var(--green);color:var(--green)}
+
+  .limits{padding:20px}
+  .limits ul{margin:0;padding-left:20px}
+  .limits li{margin:6px 0;color:var(--muted)}
+  .limits li b{color:var(--ink)}
+  .sources{padding:20px}
+  .sources ul{margin:0;padding-left:20px;font-size:14px}
+  .sources li{margin:6px 0}
+  .sources li span{color:var(--muted)}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer p{margin:6px 0;max-width:760px}
+
+  @media (max-width:900px){
+    .why,.rules,.pair,.scores{grid-template-columns:1fr}
+    .colh{display:none}
+    .row-h{grid-template-columns:44px minmax(0,1fr) 24px;row-gap:8px}
+    .row-h .c1,.row-h .c2,.row-h .c3{grid-column:2}
+    .row-h .c1::before{content:"Draft: ";font-size:12px;color:var(--faint);font-weight:700}
+    .row-h .c2::before{content:"Fix 1: ";font-size:12px;color:var(--faint);font-weight:700}
+    .row-h .c3::before{content:"Fix 2: ";font-size:12px;color:var(--faint);font-weight:700}
+    .row-h .caret{grid-column:3;grid-row:1}
+  }
+  @media (max-width:1100px){.pair{grid-template-columns:1fr}}
+  @media (max-width:560px){
+    .wrap,.topbar-in{padding-left:16px;padding-right:16px}
+    .topbar{position:static}
+    .scores{grid-template-columns:1fr}
+    .pills{margin-left:0}
+  }
+  @media (prefers-reduced-motion: reduce){.caret{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">SOP</div>
+      <div><div class="brand-name">Dispute SOP Check</div><div class="brand-sub">Every line, call and check</div></div>
+    </div>
+    <div class="pills">
+      <a class="pill" href="index.html">Back to summary</a>
+      <span class="pill warn">Unofficial concept, fictional bank</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="eyebrow">The full run</span>
+    <h1>Every call, check and fix behind the <em>dispute SOP check</em>.</h1>
+    <p class="lede">When a US customer calls about a charge they didn't make, the agent's answer is governed by <b>Regulation E</b>. This pack turns the rules into <b id="nScen"></b> caller scenarios and <b id="nChecks"></b> pass/fail checks, then runs them on a fictional bank's first-draft dispute procedure, fixes what fails, and reruns until it passes.</p>
+    <div class="scores" id="scores"></div>
+    <p class="runline" id="runline"></p>
+  </div>
+
+  <section aria-labelledby="whyH">
+    <h2 id="whyH">Why this exists</h2>
+    <div class="why">
+      <div class="card"><b>Disputes are a named use case</b><p>Lorikeet's Forward Deployed PM posting opens with <q>a stolen card, a disputed payment or a patient asking about their prescription.</q> For US fintechs, the disputed payment comes with federal rules attached.</p></div>
+      <div class="card"><b>The mistakes are documented</b><p>CFPB's own FAQ calls out requiring police reports, sending customers to the merchant first, and counting 60 days from the transaction date, and notes examiners have cited these kinds of errors. A first-draft agent procedure can copy all of them.</p></div>
+      <div class="card"><b>Solve it once</b><p>Every US fintech deployment on disputes needs the same checks. The posting asks for <q>solve it once rather than five times.</q> This is that, for Reg E.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="resH">
+    <h2 id="resH">Results, scenario by scenario</h2>
+    <p class="sec-note">Each row is one caller. Open a row to read the caller's words, the agent's reply under each SOP version, and the grader's verdict on every check with the quote it was based on.</p>
+    <div class="filters" role="group" aria-label="Filter scenarios">
+      <button class="fbtn" data-f="all" aria-pressed="true">All scenarios</button>
+      <button class="fbtn" data-f="draftfail" aria-pressed="false">Draft failed</button>
+      <button class="fbtn" data-f="fix1fail" aria-pressed="false">Fix 1 still failed</button>
+      <button class="fbtn" data-f="control" aria-pressed="false">Controls</button>
+    </div>
+    <div class="card rows">
+      <div class="colh"><span>ID</span><span>Scenario</span><span>Draft</span><span>Fix 1</span><span>Fix 2</span><span></span></div>
+      <div id="rows"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="bareH">
+    <h2 id="bareH">Control: the bare-bones SOP</h2>
+    <p class="sec-note" id="bareNote"></p>
+    <div class="card limits"><ul id="bareFails"></ul></div>
+  </section>
+
+  <section aria-labelledby="fixH">
+    <h2 id="fixH">The fixes: what changed in the procedure</h2>
+    <p class="sec-note">Only these lines changed between versions. The callers, checks and agent setup stayed identical, so the change in results comes from these edits.</p>
+    <div class="diff" id="diff"></div>
+  </section>
+
+  <section aria-labelledby="ruleH">
+    <h2 id="ruleH">The rules behind the checks</h2>
+    <p class="sec-note">Every check traces to one of these. Quotes are from the regulation, its official interpretation, or CFPB's published FAQ.</p>
+    <div class="rules" id="rules"></div>
+  </section>
+
+  <section aria-labelledby="useH">
+    <h2 id="useH">How a team would use it</h2>
+    <div class="card use">
+      <ol>
+        <li>Load the 17 scenarios into the deployment's simulation suite as test customers, with the caller line as the opening message.</li>
+        <li>Turn each check into a QA rubric item or a reply guardrail. They are written in plain language on purpose.</li>
+        <li>Run the customer's draft procedure, fix what fails, rerun, and only go live when every critical check passes.</li>
+        <li>Rerun the pack whenever the dispute workflow or the underlying model changes.</li>
+      </ol>
+      <div class="dl">
+        <a href="scenarios.json" download>Download scenarios + checks (JSON)</a>
+        <a href="rules.json" download>Download rules (JSON)</a>
+        <a href="sop_v1_draft.md" download>Draft SOP</a>
+        <a href="sop_v2_fixed.md" download>Fix 1 SOP</a>
+        <a href="sop_v3_final.md" download>Fix 2 SOP</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="limH">
+    <h2 id="limH">How this was run, and its limits</h2>
+    <div class="card limits"><ul id="limits"></ul></div>
+  </section>
+
+  <section aria-labelledby="srcH">
+    <h2 id="srcH">Sources</h2>
+    <div class="card sources">
+      <ul>
+        <li><a href="https://www.consumerfinance.gov/rules-policy/regulations/1005/11/">12 CFR 1005.11, Procedures for resolving errors</a> <span>(notice, written confirmation, timelines, closed accounts)</span></li>
+        <li><a href="https://www.consumerfinance.gov/rules-policy/regulations/1005/6/">12 CFR 1005.6, Liability of consumer for unauthorized transfers</a> <span>($50 and $500 tiers, negligence)</span></li>
+        <li><a href="https://www.consumerfinance.gov/rules-policy/regulations/1005/interp-11/">Official interpretation of 1005.11</a> <span>(account number not required, fees, closed accounts)</span></li>
+        <li><a href="https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/">CFPB Electronic Fund Transfers FAQs</a> <span>(police reports, merchant-first, impostor scams, waivers)</span></li>
+        <li><a href="https://jobs.ashbyhq.com/lorikeet/078c3133-7512-4f62-9b34-fda0434a09e1">Lorikeet, Forward Deployed Product Manager posting</a> <span>(the "disputed payment" and "solve it once" quotes)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Unofficial concept, mock data only.</b> Pinecrest, its callers, merchants and SOPs are fictional. Not affiliated with or endorsed by Lorikeet. Not legal advice: a real deployment needs the customer's compliance team to sign off.</p>
+    <p>Built by Abdulsaboor Shaikh. "I am a Product Builder with 2 years of experience, most recently shipping voice agents at Cloudflare, where I got obsessed with building, learning, failing, and growing quickly. Big tech pace is too slow, so now I'm hungry to grind and level up at a startup deploying agents in the real world. When I want something badly I commit fully: I'm disciplined, confident, and energetic :D"</p>
+  </footer>
+</main>
+
+<script>
+const D = __DATA__;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SC = D.scen.scenarios;
+const CONTROLS = new Set(["S11","S12","S15"]);
+
+$("#nScen").textContent = SC.length;
+$("#nChecks").textContent = D.nchecks;
+
+function summary(v, s){
+  const g = D.results[v][s.id].grades;
+  const fails = s.checks.filter(c => g[c.id].verdict === "FAIL");
+  const warns = s.checks.filter(c => g[c.id].verdict === "WARN");
+  if (fails.length) return {cls:"fail", txt: fails.length === s.checks.length && fails.length > 1 ? "All failed" : fails.length + " failed", fail:true};
+  if (warns.length) return {cls:"warn", txt:"Warning", fail:false};
+  return {cls:"pass", txt:"Passed", fail:false};
+}
+
+const T = D.tally;
+const VERS = [["A","Draft SOP"],["B","Fix 1: Reg E rules"],["C","Fix 2: caught by the rerun"]];
+$("#scores").innerHTML = VERS.map(([v,label]) => {
+  const t = T[v], cls = t.scen_pass === SC.length ? "good" : (v === "A" ? "bad" : "mid");
+  const d = `${t.crit_fail} critical check ${t.crit_fail === 1 ? "failure" : "failures"}, ${t.FAIL} in all${t.WARN ? `, ${t.WARN} warning${t.WARN === 1 ? "" : "s"}` : ""}`;
+  return `<div class="score ${cls}"><div class="score-k">${label}</div>
+  <div class="score-v">${t.scen_pass}<small> of ${SC.length} passed</small></div>
+  <div class="score-d">${d}</div></div>`;
+}).join("");
+const M = D.meta;
+$("#runline").textContent = `Run ${M.date}. One reply per scenario per SOP version (${SC.length*3} replies), each graded against every check. Every number on this page is a count from that run.`;
+
+function checkHTML(s, v){
+  const g = D.results[v][s.id].grades;
+  return s.checks.map(c => {
+    const r = g[c.id], cls = r.verdict.toLowerCase();
+    return `<div class="check"><div><span class="chip ${cls}">${r.verdict}</span></div>
+      <div><div class="ct">${esc(c.text)} <span class="sev">${c.severity}</span></div>
+      <div class="ev">Evidence: "${esc(r.evidence)}"</div></div></div>`;
+  }).join("");
+}
+function sideHTML(s, v, label){
+  const r = D.results[v][s.id];
+  return `<div class="side"><h4>${label}</h4><p class="reply">${esc(r.reply)}</p>
+    <div class="acts">Actions: ${esc((r.actions||[]).join(", ") || "none")}</div>${checkHTML(s, v)}</div>`;
+}
+function renderRows(filter){
+  const rows = SC.filter(s => {
+    if (filter === "draftfail") return summary("A", s).fail;
+    if (filter === "fix1fail") return summary("B", s).fail;
+    if (filter === "control") return CONTROLS.has(s.id);
+    return true;
+  });
+  $("#rows").innerHTML = rows.length ? rows.map(s => {
+    const a = summary("A", s), b = summary("B", s), c = summary("C", s);
+    return `<div class="row" id="row-${s.id}">
+      <button class="row-h" aria-expanded="false" aria-controls="d-${s.id}">
+        <span class="rid">${s.id}</span>
+        <span><span class="rtitle">${esc(s.title)}${CONTROLS.has(s.id) ? " (control)" : ""}</span><span class="rrules">Rules ${s.rules.join(", ")}</span></span>
+        <span class="c1"><span class="chip ${a.cls}">${a.txt}</span></span>
+        <span class="c2"><span class="chip ${b.cls}">${b.txt}</span></span>
+        <span class="c3"><span class="chip ${c.cls}">${c.txt}</span></span>
+        <span class="caret" aria-hidden="true">&#9656;</span>
+      </button>
+      <div class="detail" id="d-${s.id}">
+        <div class="caller"><b>Caller</b>"${esc(s.caller)}"</div>
+        <div class="pair">${sideHTML(s,"A","Draft SOP reply")}${sideHTML(s,"B","Fix 1 reply")}${sideHTML(s,"C","Fix 2 reply")}</div>
+      </div></div>`;
+  }).join("") : `<div style="padding:18px;color:var(--muted)">No scenarios match this filter in this run.</div>`;
+}
+$("#rows").addEventListener("click", e => {
+  const btn = e.target.closest(".row-h"); if (!btn) return;
+  const row = btn.parentElement, open = !row.classList.contains("open");
+  row.classList.toggle("open", open); btn.setAttribute("aria-expanded", open);
+});
+document.querySelectorAll(".fbtn").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".fbtn").forEach(x => x.setAttribute("aria-pressed", x === b));
+  renderRows(b.dataset.f);
+}));
+renderRows("all");
+
+const dl = d => `<div class="card dline"><div class="n">SOP line ${d.n}</div>
+  <p class="old">${esc(d.old)}</p><p class="new">${esc(d.new)}</p></div>`;
+const r1 = D.diffs.B, r2 = D.diffs.C;
+const fix1fails = SC.filter(s => summary("B", s).fail).map(s => s.id);
+$("#diff").innerHTML = `<h3 class="round">Round 1: apply the Reg E rules <span>(${r1.length} lines changed)</span></h3>${r1.map(dl).join("")}
+  <h3 class="round">Round 2: fix what the rerun caught <span>(${r2.length} ${r2.length === 1 ? "line" : "lines"} changed, after ${fix1fails.join(" and ")} still failed under Fix 1)</span></h3>${r2.map(dl).join("")}`;
+
+$("#rules").innerHTML = D.rules.map(r => `<div class="card rule"><div class="rh"><span>${r.id}</span></div>
+  <p>${esc(r.rule)}</p><blockquote>"${esc(r.quote)}"</blockquote>
+  <div class="cite"><a href="${r.url}">${esc(r.cite)}</a></div></div>`).join("");
+
+const bareTotal = T.D.scen_pass + T.E.scen_pass;
+$("#bareNote").innerHTML = `Before testing the flawed SOP, the same agent ran all ${SC.length} calls twice with a six-line SOP that says nothing about Reg E (<a href="sop_v0_realistic.md">sop_v0_realistic.md</a>). Where the SOP was silent it used its own judgment. ${bareTotal} of ${SC.length*2} calls passed every check. It never required a police report, sent a caller to the merchant first, or denied the caller who wrote the PIN on the card. In all 6 calls where the caller asked how long it would take (S01, S13 and S17, twice each), it gave no timeline at all: safe, but vague. The misses:`;
+$("#bareFails").innerHTML = ["D","E"].flatMap((v,i) => SC.flatMap(s => s.checks.filter(c => D.results[v][s.id].grades[c.id].verdict === "FAIL").map(c =>
+  `<li><b>${s.id}, run ${i+1}:</b> ${esc(s.title)}. Failed ${c.id} (${c.severity}). Evidence: "${esc(D.results[v][s.id].grades[c.id].evidence)}"</li>`))).join("");
+$("#limits").innerHTML = M.limits.map(l => `<li>${l}</li>`).join("");
+</script>
+</body>
+</html>

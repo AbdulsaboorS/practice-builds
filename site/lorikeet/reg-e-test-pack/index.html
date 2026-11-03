@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dispute SOP Check</title>
+<meta name="description" content="Find the lines in a fintech's dispute SOP that will make an AI agent break Reg E, before go-live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAFA; --card:#FFFFFF; --ink:#1A1A1A; --muted:#5F6068; --faint:#8C8D94; --line:#E7E7EA;
+  --accent:#4348DC; --accent-bg:#EEEFFC; --bad:#C2341F; --bad-bg:#FDF0EE; --good:#1F8A3B; --good-bg:#EDF7EF; --hi:#FACB12;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0F11; --card:#18181B; --ink:#F2F2F3; --muted:#A6A7AE; --faint:#7E7F86; --line:#2A2A2F;
+    --accent:#8B8FF2; --accent-bg:#1E1F3A; --bad:#FF8B78; --bad-bg:#2C1916; --good:#6FD58A; --good-bg:#142519;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0F11; --card:#18181B; --ink:#F2F2F3; --muted:#A6A7AE; --faint:#7E7F86; --line:#2A2A2F;
+  --accent:#8B8FF2; --accent-bg:#1E1F3A; --bad:#FF8B78; --bad-bg:#2C1916; --good:#6FD58A; --good-bg:#142519;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 56px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.top b{color:var(--ink);font-weight:600}
+.tag{border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--card)}
+h1{font-size:clamp(30px,5.6vw,46px);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:56px 0 18px}
+h1 span{color:var(--accent)}
+.lede{font-size:18px;color:var(--muted);margin:0 0 28px;max-width:640px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:44px}
+.stat b{display:block;font-size:28px;letter-spacing:-.02em;font-weight:700}
+.stat span{font-size:13.5px;color:var(--muted)}
+.stat.bad b{color:var(--bad)} .stat.good b{color:var(--good)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+h2{font-size:20px;letter-spacing:-.01em;margin:0}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{font:inherit;font-size:14px;font-weight:600;border:0;background:none;color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;min-height:36px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px}
+.head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.head h3{margin:0;font-size:16.5px;font-weight:600}
+.count{font-size:13px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bad-bg);color:var(--bad);white-space:nowrap}
+.fixed .count{background:var(--good-bg);color:var(--good)}
+.sop{font-family:"Geist Mono",ui-monospace,monospace;font-size:13.5px;line-height:1.55;padding:12px 14px;border-radius:10px;background:var(--bad-bg);color:var(--ink);border-left:3px solid var(--bad);margin:0 0 12px}
+.fixed .sop{background:var(--good-bg);border-left-color:var(--good)}
+.said{margin:0 0 12px;font-size:15.5px}
+.said small{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+.said q{color:var(--bad);font-weight:500}
+.fixed .said q{color:var(--good)}
+.why{font-size:14px;color:var(--muted);margin:0;padding-top:12px;border-top:1px solid var(--line)}
+.why b{color:var(--ink);font-weight:600}
+.v-after{display:none}
+.fixed .v-before{display:none} .fixed .v-after{display:inline}
+.fixed .sop.v-after,.fixed p.v-after{display:block}
+.how{margin-top:44px}
+.how ol{padding-left:20px;margin:10px 0 0;color:var(--muted)}
+.how li{margin-bottom:6px}
+.how li b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14.5px}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:1px solid var(--line);background:var(--card);color:var(--ink)}
+footer{margin-top:40px;font-size:12.5px;color:var(--faint)}
+@media (max-width:600px){
+  .wrap{padding:20px 16px 44px}
+  h1{margin-top:36px}
+  .lede{font-size:16.5px}
+  .stats{grid-template-columns:1fr;gap:12px}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><b>Dispute SOP Check</b><span class="tag">Unofficial concept, fictional bank</span></div>
+
+  <h1>Find the lines in a dispute SOP that will make an AI agent <span>break Reg E</span>, before go-live.</h1>
+  <p class="lede">Human agents apply a bad policy now and then. An AI agent applies it on every call. So I tested the policy, not just the agent: 17 dispute calls, 29 checks, each tied to a quoted rule.</p>
+
+  <div class="stats">
+    <div class="stat bad"><b>14 of 17</b><span>calls broke Reg E with a draft SOP</span></div>
+    <div class="stat"><b>30 of 34</b><span>passed with a bare SOP, so the draft caused it</span></div>
+    <div class="stat good"><b>17 of 17</b><span>passed after fixing the SOP</span></div>
+  </div>
+
+  <div class="bar">
+    <h2>Three lines that did the most damage</h2>
+    <div class="seg" role="group" aria-label="Show SOP version">
+      <button type="button" aria-pressed="true" data-v="before">Draft SOP</button>
+      <button type="button" aria-pressed="false" data-v="after">Fixed SOP</button>
+    </div>
+  </div>
+
+  <div id="cards">
+    <article class="card">
+      <div class="head"><h3>"File a police report first"</h3>
+        <span class="count v-before">Broke 6 calls</span><span class="count v-after">Fixed, no paperwork asked</span></div>
+      <p class="sop v-before">7. For fraud claims, the customer must file a police report and upload it in the app. ... The investigation starts once the completed form and police report are received.</p>
+      <p class="sop v-after">7. Open the dispute on this call. Do not require a police report or any document before the investigation starts. ...</p>
+      <p class="said"><small>The agent said</small>
+        <q class="v-before">We can't start the investigation until we receive both the completed form and the police report.</q>
+        <q class="v-after">No, you don't need to mail or upload anything for us to start. I'm opening the dispute for the $230 transfer right now.</q></p>
+      <p class="why"><b>Real-world precedent:</b> CFPB examiners found institutions denying claims without investigating when customers didn't send an affidavit, and wrote that an institution "cannot require a consumer to file a police report or other documentation" to start one. <a href="https://files.consumerfinance.gov/f/documents/cfpb_supervisory-highlights_issue-26_2022-04.pdf">Supervisory Highlights, 2022</a></p>
+    </article>
+
+    <article class="card">
+      <div class="head"><h3>"Shared a code? Not eligible."</h3>
+        <span class="count v-before">Broke 2 calls</span><span class="count v-after">Fixed, dispute opened</span></div>
+      <p class="sop v-before">4. If the customer shared their PIN, card details or a one-time code with anyone, ... the transactions are treated as authorized and are not eligible for a dispute. Explain this kindly.</p>
+      <p class="sop v-after">4. If a customer was tricked into sharing a code, PIN or card details, still open the dispute. These are handled as unauthorized transfers. ...</p>
+      <p class="said"><small>The agent told a scam victim who lost $900</small>
+        <q class="v-before">Because the one-time code was shared, the transaction is treated as authorized under our policy, which means it isn't eligible for a dispute.</q>
+        <q class="v-after">Because they had your code, I'm locking your account right now until your credentials are reset. I'm opening a dispute on the $900 transfer today.</q></p>
+      <p class="why"><b>The rule:</b> CFPB says that when a consumer is tricked into sharing access information with a scammer, the transfers are unauthorized. <a href="https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/">CFPB EFT FAQ</a></p>
+    </article>
+
+    <article class="card">
+      <div class="head"><h3>"Contact the merchant first"</h3>
+        <span class="count v-before">Broke 1 call</span><span class="count v-after">Fixed, dispute opened</span></div>
+      <p class="sop v-before">6. For card purchases (wrong amount, duplicate charge), ask the customer to contact the merchant first. If the merchant doesn't fix it within 7 days, they can call back to open a dispute.</p>
+      <p class="sop v-after">6. For card purchases, open the dispute now. The customer may also contact the merchant, but never make the dispute wait on it.</p>
+      <p class="said"><small>The agent said</small>
+        <q class="v-before">...please contact Fresh Basket first and ask them to correct it. If they haven't fixed it within 7 days, give us a call back...</q>
+        <q class="v-after">You don't need to call the store first. I'm opening a dispute for the duplicate $86.40 Fresh Basket charge right now.</q></p>
+      <p class="why"><b>Real-world precedent:</b> CFPB listed "requiring consumers to contact merchants about alleged unauthorized transactions before investigating" among recurring Reg E violations. <a href="https://files.consumerfinance.gov/f/documents/cfpb_supervisory-highlights_issue-24_2021-06.pdf">Supervisory Highlights, 2021</a></p>
+    </article>
+  </div>
+
+  <section class="how">
+    <h2>How an FDPM would use this</h2>
+    <ol>
+      <li><b>Before go-live,</b> read the customer's dispute SOP line by line against Reg E.</li>
+      <li><b>Run the 17 test calls</b> with that SOP and grade each reply blind against 29 checks.</li>
+      <li><b>Fix the lines that failed,</b> rerun, and ship only when every call passes.</li>
+    </ol>
+    <div class="cta">
+      <a class="btn primary" href="details.html">See every line, call and check</a>
+      <a class="btn ghost" href="scenarios.json" download>Download the 17 test calls</a>
+    </div>
+  </section>
+
+  <footer>Pinecrest and its SOPs are fictional. The draft SOP was written by me, modeled on mistakes CFPB has called out. Stand-in agent and blind grader: Claude, run Nov 1, 2026. Small sample, single-turn calls. Not affiliated with Lorikeet. Not legal advice. Built by Abdulsaboor Shaikh.</footer>
+</div>
+<script>
+document.querySelectorAll('.seg button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false')});
+    document.getElementById('cards').classList.toggle('fixed', b.dataset.v==='after');
+  });
+});
+</script>
+</body>
+</html>

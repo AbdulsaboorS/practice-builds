@@ -1,0 +1,93 @@
+[
+  {
+    "id": "R1",
+    "rule": "A phone call counts as notice. The investigation starts when the customer tells you, not when a form or written statement arrives.",
+    "cite": "12 CFR 1005.11(b)(1); Comments 11(b)(1)-2 and 11(c)-2",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/11/",
+    "quote": "A financial institution must begin its investigation promptly upon receipt of an oral notice. It may not delay until it has received a written confirmation."
+  },
+  {
+    "id": "R2",
+    "rule": "You can ask for written confirmation within 10 business days, but only if you tell the customer that, and where to send it, on the call.",
+    "cite": "12 CFR 1005.11(b)(2)",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/11/",
+    "quote": "An institution that requires written confirmation shall inform the consumer of the requirement and provide the address where confirmation must be sent when the consumer gives the oral notification."
+  },
+  {
+    "id": "R3",
+    "rule": "No police report or other paperwork can be required before the investigation starts.",
+    "cite": "CFPB EFT FAQ, Error Resolution Q4; Comments 11(b)(1)-2 and 11(c)-2",
+    "url": "https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/",
+    "quote": "Can a financial institution require a consumer to file a police report or other documentation as a condition of initiating an error resolution investigation? No."
+  },
+  {
+    "id": "R4",
+    "rule": "The customer cannot be told to contact the merchant first. Notice to you triggers the investigation, even if card network rules say otherwise.",
+    "cite": "12 CFR 1005.11(b)(1); CFPB EFT FAQ, Error Resolution (network rules)",
+    "url": "https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/",
+    "quote": "Other network rules allow a financial institution to require a consumer to contact the merchant before initiating an error investigation, even though 1005.11(b)(1) triggers error investigation obligations upon notice from the consumer."
+  },
+  {
+    "id": "R5",
+    "rule": "The 60-day window runs from when the statement showing the error was sent, not from the transaction date.",
+    "cite": "12 CFR 1005.11(b)(1)(i)",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/11/",
+    "quote": "Is received by the institution no later than 60 days after the institution sends the periodic statement or provides the passbook documentation, required by § 1005.9, on which the alleged error is first reflected"
+  },
+  {
+    "id": "R6",
+    "rule": "Timelines: decide within 10 business days, or take up to 45 days if the customer gets a provisional credit within 10 business days. Card purchases at merchants, foreign transactions, and new accounts get up to 90 days. New accounts (first 30 days after first deposit) get 20 business days instead of 10.",
+    "cite": "12 CFR 1005.11(c)(1)-(3)",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/11/",
+    "quote": "shall determine whether an error occurred within 10 business days of receiving a notice of error ... may take up to 45 days ... provided the institution ... Provisionally credits the consumer's account in the amount of the alleged error ... within 10 business days"
+  },
+  {
+    "id": "R7",
+    "rule": "Liability for a lost or stolen card is capped at $50 if reported within 2 business days of learning about it, and $500 after that (until the 60-day statement rule kicks in).",
+    "cite": "12 CFR 1005.6(b)(1)-(3)",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/6/",
+    "quote": "There are three possible tiers of consumer liability for unauthorized EFTs depending on the situation. A consumer may be liable for: (1) up to $50; (2) up to $500; or (3) an unlimited amount depending on when the unauthorized EFT occurs."
+  },
+  {
+    "id": "R8",
+    "rule": "Customer carelessness (like writing the PIN on the card) cannot be used to increase their liability.",
+    "cite": "12 CFR 1005.6; Comment 6(b)-2",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/6/",
+    "quote": "Negligence by the consumer cannot be used as the basis for imposing greater liability than is permissible under Regulation E."
+  },
+  {
+    "id": "R9",
+    "rule": "If a scammer tricked the customer into sharing a code or login, the transfers are still unauthorized. Terms of service cannot waive that.",
+    "cite": "CFPB EFT FAQ, Unauthorized EFTs Q5, Q6, Q8; Comment 2(m)-3",
+    "url": "https://www.consumerfinance.gov/compliance/compliance-resources/deposit-accounts-resources/electronic-fund-transfers/electronic-fund-transfers-faqs/",
+    "quote": "when a consumer is fraudulently induced into sharing account access information with a third party, and a third party uses that information to make an EFT from the consumer's account, the transfer is an unauthorized EFT under Regulation E."
+  },
+  {
+    "id": "R10",
+    "rule": "A closed account still gets an investigation.",
+    "cite": "Comment 11(a)-4",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/interp-11/",
+    "quote": "The financial institution must comply with the error resolution procedures when a consumer properly asserts an error, even if the account has been closed."
+  },
+  {
+    "id": "R11",
+    "rule": "The notice works without an account number, as long as you can identify the account another way.",
+    "cite": "Comment 11(b)(1)-1",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/interp-11/",
+    "quote": "The notice of error is effective even if it does not contain the consumer's account number, so long as the financial institution is able to identify the account in question."
+  },
+  {
+    "id": "R12",
+    "rule": "No charge for any part of the dispute process when there was an error. Fees when there was no error are not banned, but should be avoided because they discourage good-faith disputes.",
+    "cite": "Comment 11(c)-3",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/interp-11/",
+    "quote": "If a billing error occurred ... the financial institution may not impose a charge related to any aspect of the error-resolution process ... the institution should avoid any chilling effect on the good-faith assertion of errors that might result if charges are assessed when no billing error has occurred."
+  },
+  {
+    "id": "R13",
+    "rule": "Not everything is a dispute. A balance check, or checking whether a deposit posted without claiming an error, is a normal question.",
+    "cite": "12 CFR 1005.11(a)(2); Comment 11(a)-2",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1005/11/",
+    "quote": "If the consumer contacts the financial institution to ascertain whether a payment ... was debited to the account, or whether a deposit ... was credited to the account, without asserting an error, the error resolution procedures do not apply."
+  }
+]

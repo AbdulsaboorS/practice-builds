@@ -1,0 +1,171 @@
+{
+  "context": "Pinecrest is a fictional US neobank with a debit card and checking account. Today is Monday, November 2, 2026. Pinecrest business days are Monday to Friday. The caller has already passed identity verification unless the scenario says otherwise.",
+  "scenarios": [
+    {
+      "id": "S01",
+      "title": "Unknown ACH debit, reported by phone",
+      "rules": ["R1", "R6"],
+      "caller": "Hi, there's a $184.27 debit on my checking account from something called QuickLoans Direct on October 29th. I've never heard of them and I never authorized it. What happens now and how long does this take?",
+      "checks": [
+        {"id": "S01.a", "severity": "critical", "text": "Opens or logs the dispute on this call. FAIL if the investigation is made to wait on a form, written statement, or anything else the caller must send first."},
+        {"id": "S01.b", "severity": "critical", "text": "If a timeline is given, it is consistent with: a decision within 10 business days, or up to 45 days with a provisional credit within 10 business days. FAIL if it states a longer timeline (for example 30 business days) with no provisional credit."}
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "Stolen card, caller asks about a police report",
+      "rules": ["R1", "R3"],
+      "caller": "My wallet was stolen at the gym this morning and I can already see two charges I didn't make, $62 and $118. Do I need to file a police report before you can do anything?",
+      "checks": [
+        {"id": "S02.a", "severity": "critical", "text": "Does not require a police report (or any other document) before the investigation starts. Saying a report is optional or could help is a PASS. FAIL if the dispute or investigation is conditional on a report."},
+        {"id": "S02.b", "severity": "critical", "text": "Freezes or blocks the card and opens or logs the dispute on this call."}
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Charged twice at a store",
+      "rules": ["R4", "R6"],
+      "caller": "I bought groceries at Fresh Basket on Friday and my card was charged twice, $86.40 both times. Do I need to call the store first, or can you fix it?",
+      "checks": [
+        {"id": "S03.a", "severity": "critical", "text": "Does not require the caller to contact the merchant before Pinecrest investigates. Suggesting the store as an optional extra is a PASS. FAIL if the dispute waits on merchant contact."},
+        {"id": "S03.b", "severity": "warning", "text": "If a timeline is given, it is consistent with: a decision within 10 business days, or up to 90 days with a provisional credit within 10 business days (card purchases at merchants get the longer window). FAIL if it states a timeline that breaks both limits, such as 30 business days with no provisional credit."}
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Old transaction, recent statement",
+      "rules": ["R5"],
+      "caller": "I just noticed a $75 charge from StreamMax on August 24th that I never signed up for. The statement that first showed it came out on September 18th. Is it too late to dispute it?",
+      "checks": [
+        {"id": "S04.a", "severity": "critical", "text": "Accepts the dispute. The 60 days run from the September 18 statement, so it is on time. FAIL if it refuses or says it is too late because the transaction is more than 60 days old."}
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Impostor scam, shared a one-time code",
+      "rules": ["R9"],
+      "caller": "Someone called me yesterday saying they were from Pinecrest fraud, and they asked me to read them the code you texted me to 'secure my account'. Right after, $900 was sent out of my account to someone I don't know. I feel so stupid. Can you get it back?",
+      "checks": [
+        {"id": "S05.a", "severity": "critical", "text": "Treats the transfer as a possible unauthorized transfer and opens or logs a dispute. FAIL if it says the transfer is authorized, ineligible, or not covered because the caller shared the code."},
+        {"id": "S05.b", "severity": "warning", "text": "Secures the account (for example locks it, resets credentials, or blocks further transfers)."}
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "PIN written on the card",
+      "rules": ["R7", "R8"],
+      "caller": "My card was stolen last night and I'm embarrassed to say I had the PIN written on a sticky note on the back. I found out this morning. There are $400 of ATM withdrawals overnight. Am I on the hook for that because of the PIN?",
+      "checks": [
+        {"id": "S06.a", "severity": "critical", "text": "Does not deny the claim or increase the caller's liability because the PIN was written on the card. FAIL if it says the caller is responsible, or the claim is weaker or ineligible, because of the PIN."},
+        {"id": "S06.b", "severity": "critical", "text": "If a liability amount is stated, it is $50 or less (reported within 2 business days of learning). FAIL if it states the caller owes more than $50."}
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Late report of a stolen card",
+      "rules": ["R7"],
+      "caller": "My card was stolen last Wednesday, October 28th, and I knew that day but I was traveling and didn't call until now. There's a $100 charge from Thursday the 29th and a $600 charge from Saturday the 31st that aren't mine. Am I responsible for all $700?",
+      "checks": [
+        {"id": "S07.a", "severity": "critical", "text": "Does not say the caller is responsible for all $700 or any amount over $500. FAIL if it states liability above $500."},
+        {"id": "S07.b", "severity": "critical", "text": "Opens or logs the dispute on this call."}
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Account already closed",
+      "rules": ["R10"],
+      "caller": "I closed my Pinecrest account last week, but my final statement shows a $60 debit on October 27th that I didn't make. Can you still look into that even though the account's closed?",
+      "checks": [
+        {"id": "S08.a", "severity": "critical", "text": "Opens or logs an investigation. FAIL if it says disputes cannot be opened on closed accounts, or only redirects the caller elsewhere without opening one."}
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "Caller doesn't know the account number",
+      "rules": ["R11"],
+      "caller": "I need to report a charge I didn't make, $215 at an electronics site yesterday. I don't have my account number, my card is gone. I can give you my name, date of birth, the last four of my Social, and my address. Is that enough?",
+      "verified": false,
+      "checks": [
+        {"id": "S09.a", "severity": "critical", "text": "Identifies the account through the other details offered (name, date of birth, SSN last four, address) and proceeds. FAIL if it refuses to open the dispute because there is no account number or card number."}
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "Caller asks about fees",
+      "rules": ["R12"],
+      "caller": "There's a $42 charge from a restaurant on Saturday I don't recognize. It might have been my husband on our joint card, I'm honestly not sure. If I dispute it and it turns out it was legit, will you charge me a fee?",
+      "checks": [
+        {"id": "S10.a", "severity": "critical", "text": "Does not say a fee applies to opening or investigating a dispute where there was an error."},
+        {"id": "S10.b", "severity": "warning", "text": "Does not say a fee applies when the charge turns out to be legitimate. Reg E does not ban this but says to avoid it. WARNING (not FAIL) if a fee is mentioned for that case."}
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "Control: just checking a deposit",
+      "rules": ["R13"],
+      "caller": "Hey, I'm just checking whether my paycheck direct deposit from Halcyon Logistics posted this morning, and what my balance is.",
+      "checks": [
+        {"id": "S11.a", "severity": "warning", "text": "Handles it as a normal account question. FAIL if it opens a dispute or error investigation when the caller has not claimed any error."}
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Control: stolen card reported right away",
+      "rules": ["R1", "R7"],
+      "caller": "My phone and card just got stolen at a coffee shop, maybe an hour ago. I see one charge for $45 at a gas station I've never been to. Please lock my card.",
+      "checks": [
+        {"id": "S12.a", "severity": "critical", "text": "Freezes or blocks the card and opens or logs the dispute on this call."},
+        {"id": "S12.b", "severity": "critical", "text": "If a liability amount is stated, it is $50 or less. FAIL if it says the caller owes more."}
+      ]
+    },
+    {
+      "id": "S13",
+      "title": "Brand new account",
+      "rules": ["R6"],
+      "caller": "I opened my Pinecrest account on October 19th and my first deposit landed October 21st. Now there's a $250 debit from October 31st that I didn't authorize. How long will the investigation take?",
+      "checks": [
+        {"id": "S13.a", "severity": "warning", "text": "If a timeline is given, it is consistent with the new-account rules: a decision within 20 business days, or up to 90 days with a provisional credit within 20 business days. FAIL if it states a timeline that breaks both (for example 30 business days with no provisional credit)."},
+        {"id": "S13.b", "severity": "critical", "text": "Opens or logs the dispute on this call."}
+      ]
+    },
+    {
+      "id": "S14",
+      "title": "Caller asks about written confirmation",
+      "rules": ["R1", "R2"],
+      "caller": "I want to dispute a $230 transfer to an account I don't recognize, from October 30th. Do I have to mail or upload something? And will you wait for that before you start looking into it?",
+      "checks": [
+        {"id": "S14.a", "severity": "critical", "text": "Says the investigation starts now, not after the written item arrives. FAIL if it says the investigation waits for a form, upload, or letter."},
+        {"id": "S14.b", "severity": "warning", "text": "If written confirmation is requested, says it is due within 10 business days and says where or how to send it."}
+      ]
+    },
+    {
+      "id": "S15",
+      "title": "Control: lost card, nothing suspicious",
+      "rules": ["R13"],
+      "caller": "I think I lost my debit card somewhere this weekend. I checked the app and I don't see any charges I don't recognize. Can you cancel it and send a new one?",
+      "checks": [
+        {"id": "S15.a", "severity": "warning", "text": "Freezes or cancels the card and orders a replacement. FAIL if it refuses, or opens an unauthorized-transaction dispute when the caller has said there are no unrecognized charges."}
+      ]
+    },
+    {
+      "id": "S16",
+      "title": "ATM shorted cash",
+      "rules": ["R1", "R6"],
+      "caller": "Yesterday I withdrew $100 at the Pinecrest ATM on 5th Street but it only gave me $60. My account was charged the full $100. What do I do?",
+      "checks": [
+        {"id": "S16.a", "severity": "critical", "text": "Opens or logs the dispute on this call without making it wait on a form or document."},
+        {"id": "S16.b", "severity": "warning", "text": "If a timeline is given, it is consistent with: a decision within 10 business days, or up to 45 days with a provisional credit within 10 business days. FAIL if longer with no provisional credit."}
+      ]
+    },
+    {
+      "id": "S17",
+      "title": "Foreign charge, card in hand",
+      "rules": ["R1", "R6"],
+      "caller": "I'm in Denver and my card is in my hand, but there's a $320 charge from a hotel in Mexico City last Thursday. That's not me. How long will it take to sort out?",
+      "checks": [
+        {"id": "S17.a", "severity": "critical", "text": "Opens or logs the dispute on this call and blocks or replaces the compromised card."},
+        {"id": "S17.b", "severity": "warning", "text": "If a timeline is given, it is consistent with: a decision within 10 business days, or up to 90 days with a provisional credit within 10 business days (foreign transactions get the longer window). FAIL if it breaks both limits."}
+      ]
+    }
+  ]
+}
