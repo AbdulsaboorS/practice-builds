@@ -12,3 +12,4 @@ node_modules/
 site/assemblyai/harness/runs/raw/
 __pycache__/
 .venv/
+node_modules

@@ -165,7 +165,7 @@ function player(d) {
     const lines = {
       partial: ["Caller (partial transcript)", last.text],
       final: ["Caller (final transcript)", last.text],
-      reply_sent: ["Agent says", last.text],
+      reply_sent: ["Agent reply sent to TTS-1", last.text],
       error: ["Error frame", `${last.code}: ${last.error}`],
       gave_up_waiting: ["Caller", `waited ${fmt(last.waited_ms)} and heard nothing`],
       cancel_sent: ["Agent", `caller interrupted: Cancel sent (${last.buffered_ms} ms already buffered)`],

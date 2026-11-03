@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wall Report film</title>
+<style>
+:root{--bg:#0b0d12;--panel:#151922;--line:#262d3d;--text:#eef1f7;--muted:#97a0b3;--caller:#5aa9ff;--agent:#b38cff;--bad:#ff5d6c;--good:#3ecf8e;--warn:#ffb547}
+*{box-sizing:border-box}
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+.scene{position:absolute;inset:0;padding:56px 72px;display:none}
+.scene.on{display:block}
+.kicker{font-size:22px;color:var(--muted);letter-spacing:.04em}
+.badge{display:inline-block;font-size:18px;font-weight:700;padding:4px 12px;border-radius:8px;margin-left:12px;vertical-align:2px}
+.badge.bad{background:#4a1a23;color:var(--bad)} .badge.good{background:#123b2a;color:var(--good)}
+h1{font-size:44px;line-height:1.15;margin:14px 0 0;letter-spacing:-.02em;max-width:1100px}
+.sub{font-size:24px;color:var(--muted);margin-top:14px;max-width:1080px}
+.tl{position:absolute;left:180px;right:72px;top:300px}
+.lane{position:relative;height:46px;margin:10px 0;background:#121621;border-radius:8px;overflow:hidden}
+.lane{overflow:visible}.lbl{position:absolute;left:-108px;top:10px;font-size:20px;color:var(--muted)}
+.bar{position:absolute;top:6px;bottom:6px;border-radius:5px}
+.caller{background:var(--caller)} .agent{background:var(--agent)} .over{background:var(--bad);top:0;bottom:0}
+.head{position:absolute;top:-10px;height:122px;width:3px;background:#fff;box-shadow:0 0 12px #fff8}
+.bubble{position:absolute;left:72px;right:440px;top:478px;min-height:84px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:28px;line-height:1.3}
+.bubble.quiet{color:var(--muted);font-style:italic}.bubble .who{display:block;font-size:17px;color:var(--muted);margin-bottom:4px}
+.metric{position:absolute;right:72px;width:340px;top:478px;font-size:46px;line-height:1.1;font-weight:800;opacity:0;text-align:right}
+.metric small{display:block;font-size:20px;font-weight:500;color:var(--muted)}
+.metric.on{opacity:1}
+.big{font-size:64px;line-height:1.1;margin-top:150px;letter-spacing:-.02em;font-weight:800}
+.log{font:24px/1.6 ui-monospace,Menlo,monospace;margin-top:34px}
+.log div{opacity:0}.log div.on{opacity:1}
+.e{color:var(--bad)} .ok{color:var(--good)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+.cell b{display:block;font-size:22px;margin-bottom:6px}
+.cell span{font-size:20px;color:var(--muted)}
+.url{margin-top:30px;font-size:30px;font-weight:700;color:#b9a8ff}
+</style>
+</head>
+<body>
+<script>
+// Scene list. Clip scenes replay a window [from, to] of a recorded run in real
+// time; make_film.mjs cuts the same windows out of the run's mp3 for audio.
+const URL_TEXT = new URLSearchParams(location.search).get("url") || "";
+const SCENES = [
+  { type: "title", dur: 3200, title: "I broke a voice agent on AssemblyAI four ways.", sub: "Universal-3.6 Pro Realtime + AssemblyAI-TTS-1. Real API runs, recorded Nov 3. Turn your sound on." },
+  { type: "clip", run: "cutoff-naive", from: 9300, to: 13700, kicker: "1 / Cut off mid phone number", tone: "bad", badge: "NAIVE",
+    title: "min_latency mode ends the turn after the area code.", metric: "Agent heard \"713-\"", metricSub: "the number got split into 3 turns" },
+  { type: "clip", run: "cutoff-fixed", from: 12900, to: 18300, kicker: "1 / Cut off mid phone number", tone: "good", badge: "FIXED",
+    title: "Raise the silence limits while the agent waits for a number.", metric: "713-555-0134", metricSub: "one turn, 1.1 s after the last digit" },
+  { type: "clip", run: "bargein-naive", from: 3300, to: 9300, kicker: "2 / Talk-over after barge-in", tone: "bad", badge: "NAIVE",
+    title: "The caller cuts in. The old reply keeps playing.", metric: "11.6 s", metricSub: "of stale reply. Cancel alone: 11.5 s, it was already buffered" },
+  { type: "clip", run: "bargein-fixed", from: 3300, to: 8600, kicker: "2 / Talk-over after barge-in", tone: "good", badge: "FIXED",
+    title: "On SpeechStarted: Cancel, and clear the local audio buffer.", metric: "0.4 s", metricSub: "until the agent goes quiet" },
+  { type: "clip", run: "mute-naive", from: 2900, to: 11300, kicker: "3 / The agent goes mute", tone: "bad", badge: "NAIVE",
+    title: "Generate without Flush. The reply just sits there.", metric: "6.9 s of silence", metricSub: "no error, socket open" },
+  { type: "clip", run: "mute-fixed", from: 2900, to: 5600, kicker: "3 / The agent goes mute", tone: "good", badge: "FIXED",
+    title: "Flush after every reply.", metric: "0.1 s", metricSub: "to first sound" },
+  { type: "log", dur: 4600, kicker: "4 / Same close code, opposite fix", title: "STT 1008 means \"fix your key\" or \"retry next minute\".",
+    lines: [["e", "1008  Unauthorized Connection: Invalid API key"], ["e", "1008  Unauthorized Connection: Invalid API key"], ["e", "1008  Unauthorized Connection: Invalid API key"],
+            ["ok", "5 sessions opened and closed"], ["e", "1008  Unauthorized Connection: Too many concurrent sessions"], ["", "TTS-1 reports the same limit as 3009. Retry on the text, not the code."]] },
+  { type: "end", dur: 4600 },
+];
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+function overl(a, b) { const o = []; for (const [s1, e1] of a) for (const [s2, e2] of b) { const s = Math.max(s1, s2), e = Math.min(e1, e2); if (e > s) o.push([s, e]); } return o; }
+
+// Every scene gets a fixed start time, so any frame can be rendered exactly.
+let T = 0;
+for (const sc of SCENES) { sc.dur = sc.type === "clip" ? sc.to - sc.from : sc.dur; sc.start = T; T += sc.dur; }
+const TOTAL = T;
+
+async function buildClip(sc) {
+  const d = await (await fetch(`../../data/${sc.run}.json`)).json();
+  const span = sc.to - sc.from, pct = t => (100 * (t - sc.from) / span) + "%";
+  const clip = arr => arr.map(([s, e]) => [Math.max(s, sc.from), Math.min(e, sc.to)]).filter(([s, e]) => e > s);
+  const ca = clip(d.caller_audio), aa = clip(d.agent_audio.map(a => [a[0], a[1]]));
+  const el = document.createElement("div"); el.className = "scene";
+  el.innerHTML = `<div class="kicker">${esc(sc.kicker)}<span class="badge ${sc.tone}">${sc.badge}</span></div><h1>${esc(sc.title)}</h1>
+    <div class="tl"><div class="lane"><span class="lbl">Caller</span>${ca.map(([s, e]) => `<div class="bar caller" style="left:${pct(s)};width:${100 * (e - s) / span}%"></div>`).join("")}</div>
+    <div class="lane" style="margin-top:22px"><span class="lbl">Agent</span>${aa.map(([s, e]) => `<div class="bar agent" style="left:${pct(s)};width:${100 * (e - s) / span}%"></div>`).join("")}${overl(ca, aa).map(([s, e]) => `<div class="bar over" style="left:${pct(s)};width:${100 * (e - s) / span}%"></div>`).join("")}</div>
+    <div class="head" style="left:0"></div></div>
+    <div class="bubble"><span class="who">&nbsp;</span><span class="txt"></span></div>
+    <div class="metric" style="color:var(--${sc.tone})">${esc(sc.metric)}<small>${esc(sc.metricSub)}</small></div>`;
+  const says = d.events.filter(e => e.kind === "say_start").map(e => ({ s: e.at, e: e.at + e.dur_ms, text: e.text }));
+  const replies = d.events.filter(e => e.kind === "reply_sent");
+  const finals = d.events.filter(e => e.kind === "final");
+  const allAgent = d.agent_audio.map(a => [a[0], a[1]]);
+  const head = el.querySelector(".head"), bub = el.querySelector(".bubble"), who = el.querySelector(".who"), txt = el.querySelector(".txt"), met = el.querySelector(".metric");
+  // What the caller would actually hear or see at time t.
+  function line(t) {
+    const c = says.find(x => t >= x.s && t <= x.e);
+    if (c) return ["Caller says", c.text, false];
+    const a = allAgent.find(([s, e]) => t >= s && t <= e);
+    if (a) {
+      // The audio playing belongs to the oldest reply not heard yet (without
+      // Flush, a reply can play a turn late).
+      const prevEnd = Math.max(-1, ...allAgent.filter(([s, e]) => e <= a[0] - 60).map(([, e]) => e));
+      const r = replies.find(r => r.t > prevEnd && r.t <= a[0]) || [...replies].reverse().find(r => r.t <= a[0]);
+      return ["Agent says", r ? r.text : "", false];
+    }
+    const r = [...replies].reverse().find(r => r.t <= t);
+    const f = [...finals].reverse().find(f => f.t <= t);
+    const lastHeard = Math.max(-1, ...allAgent.filter(([s]) => s <= t).map(([, e]) => e));
+    if (r && r.t > lastHeard && t - r.t > 400) return ["Agent sent a reply to TTS-1. The caller hears", "nothing.", true];
+    if (f && t - f.t < 1500) return ["AssemblyAI final transcript", f.text, false];
+    const prev = [...says].reverse().find(x => x.e <= t);
+    return prev ? ["Caller said", prev.text, false] : ["", "", false];
+  }
+  return { el, render(local) {
+    const t = sc.from + local;
+    head.style.left = pct(t);
+    const [w, x, quiet] = line(t);
+    who.textContent = w || " "; txt.textContent = x; bub.classList.toggle("quiet", quiet);
+    met.style.opacity = local > span * 0.5 ? 1 : 0;
+  } };
+}
+
+function buildStatic(sc) {
+  const el = document.createElement("div"); el.className = "scene";
+  if (sc.type === "title") el.innerHTML = `<div class="big">${esc(sc.title)}</div><div class="sub" style="font-size:28px">${esc(sc.sub)}</div>`;
+  if (sc.type === "log") el.innerHTML = `<div class="kicker">${esc(sc.kicker)}</div><h1>${esc(sc.title)}</h1><div class="log">${sc.lines.map(([c, t]) => `<div class="${c}">${esc(t)}</div>`).join("")}</div>`;
+  if (sc.type === "end") el.innerHTML = `<div class="kicker">Built on AssemblyAI's real APIs. Every number comes from a recorded run.</div>
+    <div class="grid">
+      <div class="cell"><b>Cut off mid number</b><span>3 turns &rarr; 1 turn</span></div>
+      <div class="cell"><b>Talk-over after barge-in</b><span>11.6 s &rarr; 0.4 s</span></div>
+      <div class="cell"><b>Agent goes mute</b><span>6.9 s of silence &rarr; 0.1 s</span></div>
+      <div class="cell"><b>1008 retry loop</b><span>retry on the error text, not the code</span></div>
+    </div>
+    <div class="url">${esc(URL_TEXT || "Fixes and triage playbook entries on the page")}</div>`;
+  const ds = el.querySelectorAll(".log div");
+  return { el, render(local) { ds.forEach((d, i) => d.style.opacity = local >= (i + 0.3) * sc.dur / (ds.length + 1) ? 1 : 0); } };
+}
+
+(async () => {
+  const built = [];
+  for (const sc of SCENES) built.push(sc.type === "clip" ? await buildClip(sc) : buildStatic(sc));
+  built.forEach(b => document.body.append(b.el));
+  window.renderAt = ms => {
+    const i = Math.max(0, SCENES.findLastIndex(sc => sc.start <= ms));
+    built.forEach((b, j) => b.el.classList.toggle("on", j === i));
+    built[i].render(ms - SCENES[i].start);
+  };
+  window.SCENES = SCENES; window.TOTAL = TOTAL;
+  window.renderAt(0);
+  window.ready = true;
+})();
+</script>
+</body>
+</html>
