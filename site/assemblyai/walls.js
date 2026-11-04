@@ -129,17 +129,30 @@ function metrics(d) {
 // ---------------------------------------------------------------------------
 // Replay player: audio + two lanes + event marks + live caption.
 
+// Cloudflare Pages answers Range requests with a full 200, and Chrome can't
+// seek media without 206. Loading each file into a blob makes seeking local.
+const blobs = {};
+function mediaUrl(url) {
+  blobs[url] = blobs[url] || fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+    .then(b => URL.createObjectURL(b)).catch(() => url);
+  return blobs[url];
+}
+
 function player(d) {
   const root = h("div", { className: "player" });
   if (!d) { root.innerHTML = `<p class="note">Recording not available yet.</p>`; return root; }
-  const audio = new Audio(`data/${d.name}.mp3`);
-  audio.preload = "metadata";
+  const audio = new Audio();
+  audio.preload = "auto";
+  const ready = mediaUrl(`data/${d.name}.mp3`).then(u => { audio.src = u; return new Promise(r => audio.readyState >= 1 ? r() : audio.addEventListener("loadedmetadata", r, { once: true })); });
   const dur = d.duration_ms;
   const pct = ms => (100 * ms / dur) + "%";
   const btn = h("button", { className: "play", type: "button", ariaLabel: "Play recording" }, "&#9654;");
+  const back = h("button", { className: "skip", type: "button", ariaLabel: "Back 5 seconds" }, "&#8634; 5s");
+  const fwd = h("button", { className: "skip", type: "button", ariaLabel: "Forward 5 seconds" }, "5s &#8635;");
   const time = h("span", { className: "time" }, `0.0 s / ${fmt(dur)}`);
-  const controls = h("div", { className: "controls" }); controls.append(btn, time);
-  const tl = h("div", { className: "tl" });
+  const controls = h("div", { className: "controls" }); controls.append(btn, back, fwd, time);
+  const tl = h("div", { className: "tl", tabIndex: 0, role: "slider", ariaLabel: "Seek recording" });
+  tl.setAttribute("aria-valuemin", "0"); tl.setAttribute("aria-valuemax", String(Math.round(dur / 1000)));
   const track = h("div", { className: "track" });
   const laneC = h("div", { className: "lane" }, `<span class="lbl">Caller</span>`);
   const laneA = h("div", { className: "lane" }, `<span class="lbl">Agent</span>`);
@@ -153,13 +166,14 @@ function player(d) {
   track.append(laneC, laneA, marks, head);
   tl.append(track);
   const legend = h("div", { className: "legend" }, `<span><i style="background:var(--caller)"></i>Caller speaking</span><span><i style="background:var(--agent)"></i>Agent speaking</span><span><i style="background:var(--bad)"></i>Talk-over</span><span><i style="background:var(--good)"></i>Final transcript</span><span><i style="background:var(--warn)"></i>Cancel / stop</span><span><i style="background:var(--muted)"></i>Speech started</span>`);
-  const caption = h("div", { className: "caption" }, `<span class="who">Live transcript</span>Press play.`);
+  const caption = h("div", { className: "caption" }, `<span class="who">Live transcript</span>Press play, or drag the timeline.`);
   root.append(controls, tl, legend, caption);
 
   const textEvents = d.events.filter(e => ["partial", "final", "reply_sent", "error", "gave_up_waiting", "cancel_sent", "playback_stopped", "update_config"].includes(e.kind));
   function render(ms) {
     head.style.left = pct(Math.min(ms, dur));
     time.textContent = `${fmt(ms)} / ${fmt(dur)}`;
+    tl.setAttribute("aria-valuenow", String(Math.round(ms / 1000)));
     const last = [...textEvents].reverse().find(e => e.t <= ms);
     if (!last) { caption.innerHTML = `<span class="who">Live transcript</span>&nbsp;`; return; }
     const lines = {
@@ -174,15 +188,39 @@ function player(d) {
     }[last.kind];
     caption.innerHTML = `<span class="who">${lines[0]} at ${fmt(last.t)}</span>${escapeHtml(lines[1] || "")}`;
   }
-  let raf;
-  const tick = () => { render(audio.currentTime * 1000); if (!audio.paused) raf = requestAnimationFrame(tick); };
-  btn.onclick = () => {
+  // Position shown while the audio element catches up to a seek.
+  let pos = 0, raf;
+  const tick = () => { if (!audio.seeking) pos = audio.currentTime * 1000; render(pos); if (!audio.paused) raf = requestAnimationFrame(tick); };
+  async function seek(ms) {
+    pos = Math.max(0, Math.min(dur, ms)); render(pos);
+    await ready;
+    audio.currentTime = pos / 1000;
+    if (audio.ended || pos >= dur) audio.pause();
+  }
+  btn.onclick = async () => {
     document.querySelectorAll("audio,video").forEach(a => a !== audio && a.pause && a.pause());
-    if (audio.paused) { audio.play(); } else { audio.pause(); }
+    document.querySelectorAll(".player").forEach(p => p._audio && p._audio !== audio && p._audio.pause());
+    if (!audio.paused) return audio.pause();
+    await ready;
+    if (pos >= dur - 50) audio.currentTime = pos = 0;
+    audio.play();
   };
+  back.onclick = () => seek(pos - 5000);
+  fwd.onclick = () => seek(pos + 5000);
   audio.onplay = () => { btn.innerHTML = "&#10074;&#10074;"; btn.ariaLabel = "Pause"; tick(); };
-  audio.onpause = audio.onended = () => { btn.innerHTML = "&#9654;"; btn.ariaLabel = "Play recording"; cancelAnimationFrame(raf); };
-  tl.onclick = ev => { const r = track.getBoundingClientRect(); if (ev.clientX < r.left) return; const ms = dur * (ev.clientX - r.left) / r.width; audio.currentTime = ms / 1000; render(ms); };
+  audio.onpause = audio.onended = () => { btn.innerHTML = "&#9654;"; btn.ariaLabel = "Play recording"; cancelAnimationFrame(raf); render(pos); };
+  audio.onseeked = () => { if (audio.paused) render(pos); };
+  // Drag to scrub. Pointer capture keeps the drag alive outside the track.
+  const at = ev => { const r = track.getBoundingClientRect(); return dur * Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)); };
+  let dragging = false;
+  tl.onpointerdown = ev => { dragging = true; tl.setPointerCapture(ev.pointerId); seek(at(ev)); };
+  tl.onpointermove = ev => { if (dragging) seek(at(ev)); };
+  tl.onpointerup = tl.onpointercancel = () => { dragging = false; };
+  tl.onkeydown = ev => {
+    const step = { ArrowLeft: -1000, ArrowRight: 1000, Home: -Infinity, End: Infinity }[ev.key];
+    if (step !== undefined) { ev.preventDefault(); seek(isFinite(step) ? pos + step : (step < 0 ? 0 : dur)); }
+    else if (ev.key === " ") { ev.preventDefault(); btn.click(); }
+  };
   root._audio = audio;
   render(0);
   return root;
@@ -301,8 +339,8 @@ function fileSection() {
 }
 
 (async function main() {
-  const v = h("video", { controls: true, playsInline: true, preload: "metadata", poster: "video-poster.jpg" });
-  v.src = "video.mp4";
+  const v = h("video", { controls: true, playsInline: true, preload: "auto", poster: "video-poster.jpg" });
+  mediaUrl("video.mp4").then(u => { v.src = u; });
   v.onerror = () => { $("#video").innerHTML = `<span>Demo video coming soon</span>`; };
   $("#video").innerHTML = ""; $("#video").append(v);
   await baselineSection();

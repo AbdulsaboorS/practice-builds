@@ -9,7 +9,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const FPS = 25;
+const FPS = 30;
 const here = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(here, "../..");                 // site/assemblyai
 const [base, endUrl = ""] = process.argv.slice(2);
@@ -24,7 +24,7 @@ const { scenes, total } = await page.evaluate(() => ({ scenes: window.SCENES, to
 // Video: one PNG per frame piped into ffmpeg.
 const silentVideo = path.join(work, "video.mp4");
 const enc = spawn("ffmpeg", ["-loglevel", "error", "-y", "-f", "image2pipe", "-framerate", String(FPS), "-i", "-",
-  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "24", "-preset", "slow", silentVideo], { stdio: ["pipe", "inherit", "inherit"] });
+  "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-preset", "slow", "-g", String(FPS), "-tune", "animation", silentVideo], { stdio: ["pipe", "inherit", "inherit"] });
 const frames = Math.ceil(total / 1000 * FPS);
 for (let f = 0; f < frames; f++) {
   await page.evaluate(ms => window.renderAt(ms), f * 1000 / FPS);
